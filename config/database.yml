@@ -19,7 +19,7 @@ staging:
   password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   host: localhost
   encoding: utf8
-  socket: /var/lib/mysql/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql
@@ -28,4 +28,4 @@ production:
   password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   host: localhost
   encoding: utf8
-  socket: /var/lib/mysql/mysql.sock
+  socket: /var/run/mysqld/mysqld.sock
