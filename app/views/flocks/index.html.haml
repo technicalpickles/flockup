@@ -1,4 +1,12 @@
-%ul
-  - @flocks.each do |flock|
-    %li= link_to flock.name, flock
+%p
+  Simply put, a flock is a group on twitter. Who's in flock? That's for you to decide.
+  You could always
+  = link_to('start your own', new_flock_path) + '.'
+
+%table
+  - @flocks.in_groups_of(7) do |flocks_in_row|
+    %tr
+      - flocks_in_row.each do |flock|
+        %td= link_to(flock.name, flock) if flock
+
 = link_to 'Create a flock', new_flock_path
