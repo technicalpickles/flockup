@@ -5,7 +5,8 @@
   
 %ul
   - @flock.flockers.each do |flocker|
-    %li= link_to flocker.twitter_username, flocker
+    - unless flocker.new_record?
+      %li[flocker]= link_to(flocker.twitter_username, flocker_path(flocker))
 
 - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
   = form.text_field :twitter_username

@@ -5,6 +5,7 @@ class FlockersControllerTest < ActionController::TestCase
   def setup
     @flocker = Factory(:flocker)
     @flockers = [@flocker]
+    @flock = Factory(:flock)
   end
   
   context "viewing the flockers list" do
@@ -34,5 +35,17 @@ class FlockersControllerTest < ActionController::TestCase
     should_assign_to :flocker
   end
   
-  
+  context "submitting a brand new flocker to a flock" do
+    setup do
+      assert_nothing_raised do
+        post :create, :flock_id => @flock.to_param, :flocker => {:twitter_username => 'pickles'}
+      end
+    end
+
+    should_respond_with :redirect
+    should_redirect_to "flock_url(@flock)"
+    
+    should_change "Flocker.count", :by => 1
+    should_change "@flock.flockers.count", :by => 1
+  end
 end

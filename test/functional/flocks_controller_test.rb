@@ -2,10 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class FlocksControllerTest < ActionController::TestCase
   def setup
-    @flock = Factory(:flock)
-    2.times {
-      @flock.flockers << Factory(:flocker)
-    }
+    @flock = Factory(:flock, :flockers => (1..2).collect { Factory(:flocker) })
     assert_equal 2, @flock.flockers.count
     
     @flocks = [@flock]
@@ -71,6 +68,7 @@ class FlocksControllerTest < ActionController::TestCase
         assert_select "a[href=#{flocker_path(flocker)}]"
       end
     end
+    
     should_eventually "display a link to remove each flocker"
     should "display a form to add a new flocker to the flock" do
       assert_select "form[action=#{flock_flockers_path(@flock)}]" do
