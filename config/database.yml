@@ -16,16 +16,16 @@ test:
  
 staging:
   <<: *defaults
-  database: <%= PROJECT_NAME %>_staging
-  username: <%= PROJECT_NAME %>
+  database: flockup_staging
+  username: flockup
   password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
   encoding: utf8
   socket: /var/run/mysqld/mysqld.sock
 
 production:
   adapter: mysql
-  database: <%= PROJECT_NAME %>_production
-  username: <%= PROJECT_NAME %>
-  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
+  database: flockup_production
+  username: flockup
+  password: mlzkxcvmpoiqwnjkladsng
   encoding: utf8
   socket: /var/run/mysqld/mysqld.sock
