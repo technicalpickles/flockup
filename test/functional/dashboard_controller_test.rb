@@ -15,6 +15,12 @@ class DashboardControllerTest < ActionController::TestCase
   
     should_respond_with :success
     should_render_template :index
+    should 'have a search form' do
+      assert_select "form[action=#{dashboard_search_path}]" do
+        assert_select "input[name='search']"
+        assert_select "input[type=submit]"
+      end
+    end
   end
       
 end
