@@ -3,4 +3,6 @@ class Flock < ActiveRecord::Base
   validates_length_of :name, :within => 2..20
   validates_uniqueness_of :name
   validates_format_of :name, :with => /^[a-z\d]+$/
+  
+  has_and_belongs_to_many :flockers
 end

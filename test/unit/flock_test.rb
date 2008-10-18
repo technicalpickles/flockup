@@ -14,4 +14,6 @@ class FlockTest < ActiveSupport::TestCase
   should_allow_values_for :name, "ruby", "rails", "railsrumble2008"
   
   should_have_index :name
+  
+  should_have_and_belong_to_many :flockers
 end
