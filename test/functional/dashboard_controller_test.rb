@@ -41,4 +41,16 @@ class DashboardControllerTest < ActionController::TestCase
     should_set_the_flash_to /no results/i
   end
       
+  context "searching for a flock" do
+    setup do
+      Factory(:flock, :name => 'dontfindme')
+      @target_flock = Factory(:flock, :name => 'searchtest')
+      Factory(:flock, :name => 'dontfindmeeither')
+      get :search, :search => 'searchtest'
+    end
+
+    should_respond_with :redirect
+    should_redirect_to "flock_url(@target_flock)"
+  end
+      
 end
