@@ -13,12 +13,12 @@
     %blockquote= h(@flock.description)
 
 %div
-  - if @flock.flockers.size > 1
+  - if @flock.flockers.size > 2 # there's always going to be 1, because we 'build' a flocker
     %p
       And here's everyone that's flocked to
       %span.flock= @flock.name
       = '...'
-    %table
+    %table.flockers
       - @flock.flockers.in_groups_of(7).each do |flockers_in_row|
         %tr
           - flockers_in_row.each do |flocker|
