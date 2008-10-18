@@ -1,0 +1,4 @@
+%ul
+  - @flocks.each do |flock|
+    %li= link_to flock.name, flock
+= link_to 'Create a flock', new_flock_path
