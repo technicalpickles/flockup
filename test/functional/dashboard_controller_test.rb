@@ -21,6 +21,7 @@ class DashboardControllerTest < ActionController::TestCase
         assert_select "input[type=submit]"
       end
     end
+    should_link_to 'new_flock_path'
   end
 
   context "searching" do
