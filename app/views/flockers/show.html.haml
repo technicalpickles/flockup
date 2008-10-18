@@ -1,8 +1,9 @@
 %dl
   %dt Twitter username
-  %dd= h @flocker.twitter_username
+  %dd= link_to h(@flocker.twitter_username), "http://twitter.com/#{@flocker.twitter_username}"
 
-%p
-  = link_to 'Edit', edit_flocker_path(@flocker)
-  |
-  = link_to 'Back', flockers_path
+  %dt Flocks
+  %dd
+    %ul
+      - @flocker.flocks.each do |flock|
+        %li= link_to flock.name, flock

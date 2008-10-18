@@ -1,6 +1,6 @@
 class FlockersController < ApplicationController
   before_filter :load_enclosing_resources, :if => :enclosing_resource?
-  resources_controller_for :flockers, :in => :flock, :only => [:index, :new, :create]
+  resources_controller_for :flockers, :in => :flock, :only => [:index, :new, :create, :show]
   
   def create
     self.resource = new_resource

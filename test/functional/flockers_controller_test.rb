@@ -4,6 +4,8 @@ class FlockersControllerTest < ActionController::TestCase
   
   def setup
     @flocker = Factory(:flocker, :twitter_username => 'flockup', :flocks => [Factory(:flock)])
+    assert_equal 1, @flocker.flocks.count
+
     @flockers = [@flocker]
     @flock = Factory(:flock)
   end
@@ -79,8 +81,27 @@ class FlockersControllerTest < ActionController::TestCase
     should_not_change "@flock.flockers.count"
     
     should_set_the_flash_to /already in/i
-
   end
+  
+  context "viewing a flocker" do
+    setup do
+      assert_nothing_raised do
+        get :show, :id => @flocker.to_param
+      end
+    end
+
+    should_respond_with :success
+    
+    should "link to each of their flocks" do
+      @flocker.flocks.each do |flock|
+        assert_select "a[href=#{flock_path(flock)}]"
+      end
+    end
+
+    should_not_link_to 'edit_flocker_path(@flocker)'
+    should_link_to '"http://twitter.com/#{@flocker.twitter_username}"'
+  end
+  
   
   
 end
