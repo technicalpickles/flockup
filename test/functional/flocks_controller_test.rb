@@ -72,7 +72,12 @@ class FlocksControllerTest < ActionController::TestCase
       end
     end
     should_eventually "display a link to remove each flocker"
-    should_eventually "display a form to add a new flocker to the flock"
+    should "display a form to add a new flocker to the flock" do
+      assert_select "form[action=#{flock_flockers_path(@flock)}]" do
+        assert_select "input[name='flocker[twitter_username]']"
+        assert_select "input[type=submit]"
+      end
+    end
   end
   
   

@@ -6,3 +6,7 @@
 %ul
   - @flock.flockers.each do |flocker|
     %li= link_to flocker.twitter_username, flocker
+
+- form_for @flocker, :url => flock_flockers_path(@flock) do |form|
+  = form.text_field :twitter_username
+  = form.submit 'Add flocker'
