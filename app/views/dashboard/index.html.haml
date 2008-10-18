@@ -1,8 +1,7 @@
-  
 %div{:class => 'column span-13'}
   = image_tag 'flock1.jpg'
 %div{:class => 'column span-11 last'}
   %h2 Find your flock!
-  - form_tag :dashboard_search do
+  - form_tag :dashboard_search, :method => :get do
     = text_field_tag 'search'
     = submit_tag 'Search'
