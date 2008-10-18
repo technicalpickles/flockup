@@ -5,9 +5,20 @@ set :rake, "/opt/ruby-enterprise-1.8.6-20080810/bin/rake"
 
 set :application, 'flockup'
 
+# Who are we?
+set :repository, "git@github.com:railsrumble/the-presidential-vampire-league.git"
+set :scm, "git"
+set :deploy_via, :remote_cache
+
+# Deploy details
+set :user, "deploy"
+set :deploy_to, "/home/#{user}/apps/#{application}"
+set :use_sudo, false
+set :checkout, 'export'
+
 # We need to know how to use mongrel
 set :mongrel_rails, '/opt/ruby-enterprise-1.8.6-20080810/bin/mongrel_rails'
-set :mongrel_cluster_config, "#{deploy_to}/#{current_dir}/config/mongrel_cluster_production.yml"
+set (:mongrel_cluster_config) {"#{deploy_to}/#{current_dir}/config/mongrel_cluster_production.yml"}
 
 ssh_options[:paranoid] = false
 
@@ -27,15 +38,15 @@ namespace :deploy do
   end
   desc "Start the mongrels"
   task :start do
-    send(run_method, "cd #{deploy_to}/#{current_dir} && #{mongrel_rails} cluster::start --config #{mongrel_cluster_config}")
+    run "#{mongrel_rails} cluster::start --config #{mongrel_cluster_config}"
   end
   desc "Stop the mongrels"
   task :stop do
-    send(run_method, "cd #{deploy_to}/#{current_dir} && #{mongrel_rails} cluster::stop --config #{mongrel_cluster_config}")
+    run "#{mongrel_rails} cluster::stop --config #{mongrel_cluster_config}"
   end
   desc "Restart the mongrels"
   task :restart do
-    send(run_method, "cd #{deploy_to}/#{current_dir} && #{mongrel_rails} cluster::restart --config #{mongrel_cluster_config}")
+    run "#{mongrel_rails} cluster::restart --config #{mongrel_cluster_config}"
   end
   desc "Run this after every successful deployment" 
   task :after_default do

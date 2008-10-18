@@ -1,0 +1,22 @@
+# This defines the default roots and alternate roots.
+# The name (or key) of your site will be sprintf'd with
+# the below root, right.
+root: 
+  rails: /home/deploy/apps/%s/current/public
+
+# All your vhosts.
+sites: 
+  # We're naming this vhost 'errtheblog'
+  flockup:
+    # Two upstream servers to proxy balance fairly.
+    upstream: 
+      - 127.0.0.1:3030
+      - 127.0.0.1:3031
+      - 127.0.0.1:3032
+    fair: true
+    # Just a string of server names.
+    server_name: twitterflocks.r08.railsrumble.com
+    # www.errtheblog.com => errtheblog.com
+    no_www: true
+    # Which root to use.  You can add a custom one here, too.
+    root: rails
