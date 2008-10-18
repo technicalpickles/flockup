@@ -50,4 +50,20 @@ class FlocksControllerTest < ActionController::TestCase
     should_change "Flock.count", :by => 1
   end
   
+  context "viewing a flock" do
+    setup do
+      assert_nothing_raised { get :show, :id => @flock }
+    end
+
+    should_respond_with :success
+    should_render_template :show
+    
+    should_eventually "display the name"
+    should_eventually "display the description"
+    should_eventually "display a link to view each flocker"
+    should_eventually "display a link to remove each flocker"
+    should_eventually "display a form to add a new flocker to the flock"
+  end
+  
+  
 end
