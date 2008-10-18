@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def tab_for(name, url = nil)
-    url ||= send("#{name.downcase}_url")
+    url ||= send("#{name.downcase}_path")
     "<li>#{link_to name.capitalize, url, tab_link_attributes(name)}</li>"
   end
 

@@ -36,3 +36,8 @@ a:visited {
   margin-bottom: 1em;
   margin-top: 1em;
 }
+
+span.flock {
+  color: #481a0a;
+   font-weight: bold;
+}
