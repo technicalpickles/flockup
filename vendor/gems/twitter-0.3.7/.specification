@@ -1,5 +1,5 @@
 --- !ruby/object:Gem::Specification 
-name: jnunemaker-twitter
+name: twitter
 version: !ruby/object:Gem::Version 
   version: 0.3.7
 platform: ruby
