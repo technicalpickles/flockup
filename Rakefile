@@ -8,3 +8,10 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
+
+begin
+  require 'vlad'
+  Vlad.load :scm => :git
+  require 'vlad/extras'
+rescue LoadError
+end
