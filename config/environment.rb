@@ -12,6 +12,6 @@ Rails::Initializer.run do |config|
   config.gem 'mislav-will_paginate',      
                                           :lib => 'will_paginate', 
                                           :source => 'http://gems.github.com/'
-  config.gem 'twitter'
-  config.gem 'httparty'
+  config.load_paths += Dir.glob(File.join(RAILS_ROOT, 'vendor', 'gems', '*', 'lib'))
+
 end
