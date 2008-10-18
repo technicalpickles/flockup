@@ -22,6 +22,12 @@ class DashboardControllerTest < ActionController::TestCase
       end
     end
     should_link_to 'new_flock_path'
+    should "display tabs" do
+      assert_select "ul.tabs"
+    end
+    should "have dashboard tag selected" do
+      assert_select "li a.current", "Dashboard"
+    end
   end
 
   context "searching" do
