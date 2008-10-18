@@ -1,3 +1,7 @@
-- form_tag :dashboard_search do
-  = text_field_tag 'search'
-  = submit_tag 'Search'
+  
+%div{:class => 'column span-13'}
+  = image_tag 'flock1.jpg'
+%div{:class => 'column span-11 last'}
+  - form_tag :dashboard_search do
+    = text_field_tag 'search'
+    = submit_tag 'Search'
