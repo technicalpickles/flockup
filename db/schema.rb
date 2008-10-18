@@ -9,12 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081018003846) do
+ActiveRecord::Schema.define(:version => 20081018014849) do
 
   create_table "flockers", :force => true do |t|
     t.string   "twitter_username"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "flocks", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "flocks", ["name"], :name => "index_flocks_on_name"
 
 end
