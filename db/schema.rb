@@ -9,12 +9,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081018031301) do
+ActiveRecord::Schema.define(:version => 20081018145621) do
 
   create_table "flockers", :force => true do |t|
     t.string   "twitter_username"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "status"
   end
 
   create_table "flockers_flocks", :id => false, :force => true do |t|

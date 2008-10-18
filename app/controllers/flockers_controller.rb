@@ -10,9 +10,9 @@ class FlockersController < ApplicationController
         format.html do
           if enclosing_resource
             if enclosing_resource.flocker_ids.include?(resource.id)
-              flash[:notice] = "#{resource.twitter_username} already in #{enclosing_resource.name} flock"
+              flash[:notice] = "#{resource.twitter_username} already in the #{enclosing_resource.name} flock"
             else
-              flash[:notice] = "#{resource.twitter_username} exists already... adding to the #{enclosing_resource.name} #{enclosing_resource_name}"
+              flash[:notice] = "#{resource.twitter_username} added to the #{enclosing_resource.name} flock"
               enclosing_resource.flockers << resource
             end
             redirect_to enclosing_resource_url
@@ -22,11 +22,13 @@ class FlockersController < ApplicationController
         end
       elsif resource.save
         format.html do
-          flash[:notice] = "#{resource_name.humanize} was successfully created."
+
           if enclosing_resource
+            flash[:notice] = "#{resource.twitter_username} was added to the #{enclosing_resource.name} flock"
             enclosing_resource.flockers << resource
             redirect_to enclosing_resource_url
           else
+            flash[:notice] = "#{resource.twitter_username} was successfully created."
             redirect_to resource_url
           end
         end
