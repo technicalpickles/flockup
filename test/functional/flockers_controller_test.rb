@@ -63,8 +63,6 @@ class FlockersControllerTest < ActionController::TestCase
     
     should_not_change "Flocker.count"
     should_change "@flock.flockers.count", :by => 1
-    
-    should_set_the_flash_to /adding to/i
   end
   
   context "submitting an existing flocker to a flock they are already in" do
@@ -79,8 +77,6 @@ class FlockersControllerTest < ActionController::TestCase
     
     should_not_change "Flocker.count"
     should_not_change "@flock.flockers.count"
-    
-    should_set_the_flash_to /already in/i
   end
   
   context "viewing a flocker" do
@@ -101,7 +97,5 @@ class FlockersControllerTest < ActionController::TestCase
     should_not_link_to 'edit_flocker_path(@flocker)'
     should_link_to '"http://twitter.com/#{@flocker.twitter_username}"'
   end
-  
-  
   
 end
