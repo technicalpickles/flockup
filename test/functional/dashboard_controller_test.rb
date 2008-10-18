@@ -22,5 +22,23 @@ class DashboardControllerTest < ActionController::TestCase
       end
     end
   end
+
+  context "searching" do
+    setup do
+      get :search, :search => 'something'
+    end
+
+    should_respond_with :success
+    should_render_template :search
+  end
+
+  context "searching for something that isn't there" do
+    setup do
+      get :search, :search => 'nonexistant user'
+    end
+
+    should_respond_with :success
+    should_set_the_flash_to /no results/i
+  end
       
 end
