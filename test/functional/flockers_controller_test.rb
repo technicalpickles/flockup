@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class FlockersControllerTest < ActionController::TestCase
   
   def setup
-    @flocker = Factory(:flocker)
+    @flocker = Factory(:flocker, :twitter_username => 'flockup', :flocks => [Factory(:flock)])
     @flockers = [@flocker]
     @flock = Factory(:flock)
   end
@@ -48,4 +48,39 @@ class FlockersControllerTest < ActionController::TestCase
     should_change "Flocker.count", :by => 1
     should_change "@flock.flockers.count", :by => 1
   end
+  
+  context "submitting an existing flocker to a new flock" do
+    setup do
+      assert_nothing_raised do
+        post :create, :flock_id => @flock.to_param, :flocker => {:twitter_username => @flocker.twitter_username}
+      end
+    end
+
+    should_respond_with :redirect
+    should_redirect_to "flock_url(@flock)"
+    
+    should_not_change "Flocker.count"
+    should_change "@flock.flockers.count", :by => 1
+    
+    should_set_the_flash_to /adding to/i
+  end
+  
+  context "submitting an existing flocker to a flock they are already in" do
+    setup do
+      assert_nothing_raised do
+        post :create, :flock_id => @flocker.flocks.first.to_param, :flocker => {:twitter_username => @flocker.twitter_username}
+      end
+    end
+    
+    should_respond_with :redirect
+    should_redirect_to "flock_url(@flock)"
+    
+    should_not_change "Flocker.count"
+    should_not_change "@flock.flockers.count"
+    
+    should_set_the_flash_to /already in/i
+
+  end
+  
+  
 end

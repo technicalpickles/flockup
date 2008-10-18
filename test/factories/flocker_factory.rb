@@ -1,5 +1,5 @@
 Factory.define :flocker do |flocker|
-  flocker.twitter_username 'mystring'
+  flocker.twitter_username { Factory.next(:twitter_username) }
 end
 
 Factory.sequence :twitter_username do |n|

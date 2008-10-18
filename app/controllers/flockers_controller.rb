@@ -6,10 +6,25 @@ class FlockersController < ApplicationController
     self.resource = new_resource
     
     respond_to do |format|
-      if resource.save
+      if !new_resource.new_record?
+        format.html do
+          if enclosing_resource
+            if enclosing_resource.flocker_ids.include?(resource.id)
+              flash[:notice] = "#{resource.twitter_username} already in #{enclosing_resource.name} flock"
+            else
+              flash[:notice] = "#{resource.twitter_username} exists already... adding to the #{enclosing_resource.name} #{enclosing_resource_name}"
+              enclosing_resource.flockers << resource
+            end
+            redirect_to enclosing_resource_url
+          else
+            redirect_to resource_url
+          end
+        end
+      elsif resource.save
         format.html do
           flash[:notice] = "#{resource_name.humanize} was successfully created."
           if enclosing_resource
+            enclosing_resource.flockers << resource
             redirect_to enclosing_resource_url
           else
             redirect_to resource_url
@@ -31,8 +46,7 @@ protected
   end
   
   def new_resource(attributes = (params[resource_name] || {}))
-    result = resource_service.new(attributes)
-    enclosing_resource.flockers << result if enclosing_resource
-    result
+    existing_resource = Flocker.find_by_twitter_username(attributes[:twitter_username])
+    existing_resource || resource_service.new(attributes)
   end
 end
