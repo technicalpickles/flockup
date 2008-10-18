@@ -35,4 +35,19 @@ class FlocksControllerTest < ActionController::TestCase
       end
     end
   end
+  
+  context "submitting the flock form successfully" do
+    setup do
+      assert_nothing_raised {
+        post :create, :flock => {:name => 'awesome', :description => 'nothing is awesomer than the a team'}
+      }
+    end
+
+    should_respond_with :redirect
+    should_redirect_to "flock_path(@flock)"
+    
+    should_set_the_flash_to /success/i
+    should_change "Flock.count", :by => 1
+  end
+  
 end
