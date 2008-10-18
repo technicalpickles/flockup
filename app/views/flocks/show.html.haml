@@ -1,13 +1,32 @@
 %h1= @flock.name
 
-- unless @flock.description.blank?
-  %p= @flock.description
-  
-%ul
-  - @flock.flockers.each do |flocker|
-    - unless flocker.new_record?
-      %li[flocker]= link_to(flocker.twitter_username, flocker_path(flocker))
+%p
+  Welcome to the
+  %span.flock= @flock.name
+  flock.
+  Here's what we know about it:
 
-- form_for @flocker, :url => flock_flockers_path(@flock) do |form|
-  = form.text_field :twitter_username
-  = form.submit 'Add flocker'
+- unless @flock.description.blank?
+  %blockquote= h(@flock.description)
+- else
+  %p Hmm, sorry, we got nothin on them.
+
+%p
+  And here's everyone that's flocked to
+  %span.flock= @flock.name
+  = '...'
+
+- if @flock.flockers.count > 1
+  %ul
+    - @flock.flockers.each do |flocker|
+      - unless flocker.new_record?
+        %li[flocker]= link_to(flocker.twitter_username, flocker_path(flocker))
+  %p How about adding someone else?
+  - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
+    = form.text_field :twitter_username
+    = form.submit 'Add flocker'
+- else
+  %p My, this flock is pretty empty. How about adding someone?
+  - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
+    = form.text_field :twitter_username
+    = form.submit 'Add flocker'

@@ -1,8 +1,20 @@
 %div{:class => 'column span-13'}
   = image_tag 'flock1.jpg'
+
 %div{:class => 'column span-11 last'}
+  %p
+    Twitter is a big place. A real big place. When you first join, it can be a little overwhelming. Who do you follow? How do you find other twitters with similar interests?
+
+  %p
+    There have to be birds of a feather out there. We'll you find them.
+
   %h2 Find your flock!
   - form_tag :dashboard_search, :method => :get do
     = text_field_tag 'search'
     = submit_tag 'Search'
-  = link_to 'Create a flock!', new_flock_path
+    
+  %h3.or or...
+
+  %h2= link_to 'Start your own flock', new_flock_path
+
+  

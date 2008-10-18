@@ -21,14 +21,10 @@ class FlockersControllerTest < ActionController::TestCase
     should_render_template :index
     should_assign_to :flockers, :equals => '@flockers'
     
-    should_link_to 'new_flocker_path'
+    should_link_to 'new_flocker_path', 2
 
-    should "display tabs" do
-      assert_select "ul.tabs"
-    end
-    should "have flockers tag selected" do
-      assert_select "li a.current", "Flockers"
-    end
+    should_display_tabs
+    should_have_current_tab 'Flockers'
   end
   
   context "view form to create flocker" do
