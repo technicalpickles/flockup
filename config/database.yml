@@ -5,13 +5,13 @@ defaults: &defaults
  host: localhost
 
 development:
- database: APPNAME_dev
+ database: flockup_dev
  <<: *defaults
 
 test:
- database: APPNAME_test
+ database: flockup_test
  <<: *defaults
 
 production:
- database: APPNAME_production
+ database: flockup_production
  <<: *defaults
