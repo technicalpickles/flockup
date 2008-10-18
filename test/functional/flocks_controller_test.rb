@@ -3,6 +3,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 class FlocksControllerTest < ActionController::TestCase
   def setup
     @flock = Factory(:flock)
+    2.times {
+      @flock.flockers << Factory(:flocker)
+    }
+    assert_equal 2, @flock.flockers.count
+    
     @flocks = [@flock]
   end
   
@@ -60,7 +65,12 @@ class FlocksControllerTest < ActionController::TestCase
     
     should_eventually "display the name"
     should_eventually "display the description"
-    should_eventually "display a link to view each flocker"
+    
+    should "display a link to view each flocker" do
+      @flock.flockers.each do |flocker|
+        assert_select "a[href=#{flocker_path(flocker)}]"
+      end
+    end
     should_eventually "display a link to remove each flocker"
     should_eventually "display a form to add a new flocker to the flock"
   end

@@ -2,3 +2,7 @@
 
 - unless @flock.description.blank?
   %p= @flock.description
+  
+%ul
+  - @flock.flockers.each do |flocker|
+    %li= link_to flocker.twitter_username, flocker
