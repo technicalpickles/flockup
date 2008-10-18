@@ -1,4 +1,5 @@
 RAILS_GEM_VERSION = '2.1.1' unless defined? RAILS_GEM_VERSION
+PROJECT_NAME = 'flockup'
 
 require File.join(File.dirname(__FILE__), 'boot')
 

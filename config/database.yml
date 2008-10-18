@@ -11,7 +11,21 @@ development:
 test:
  database: flockup_test
  <<: *defaults
+ 
+staging:
+  adapter: mysql
+  database: <%= PROJECT_NAME %>_staging
+  username: <%= PROJECT_NAME %>
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
+  host: localhost
+  encoding: utf8
+  socket: /var/lib/mysql/mysql.sock
 
 production:
- database: flockup_production
- <<: *defaults
+  adapter: mysql
+  database: <%= PROJECT_NAME %>_production
+  username: <%= PROJECT_NAME %>
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
+  host: localhost
+  encoding: utf8
+  socket: /var/lib/mysql/mysql.sock
