@@ -15,6 +15,7 @@ class FlockerTest < ActiveSupport::TestCase
   
   context "a new flocker with valid twitter_username" do
     setup do
+      TwitterVerifier.stubs(:valid_username).with(:twitter_username).returns(true)
       @flocker = Factory.build(:flocker, :twitter_username => 'whattheflock')
     end
 
