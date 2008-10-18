@@ -4,27 +4,35 @@ a, a:hover {
 a:visited {
   color: #44372e; }
 
-#header h1 {
-  color: white; }
-#header a {
-  color: white;
-  text-decoration: none; }
-#header ul {
-  font-size: 1.4em;
-  margin: 0;
-  padding: 0;
-  list-style-type: none; }
-  #header ul li {
-    display: inline;
-    padding: .5em 0; }
-    #header ul li a {
-      text-decoration: none;
-      padding: .3em 1em;
-      color: #fff;
-      background-color: #BBDDFF; }
-    #header ul li a:hover {
+#header {
+  margin-bottom: 20px;
+}
+  #header h1 {
+    color: white; }
+  #header a {
+    color: white;
+    text-decoration: none; }
+  #header ul {
+    font-size: 1.4em;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    #header ul li {
+      display: inline;
+      padding: .5em 0; }
+      #header ul li a {
+        text-decoration: none;
+        padding: .3em 1em;
+        color: #fff;
+        background-color: #BBDDFF; }
+      #header ul li a:hover {
+        color: #000;
+        background-color: #fff; }
+    #header ul a.current {
       color: #000;
       background-color: #fff; }
-  #header ul a.current {
-    color: #000;
-    background-color: #fff; }
+
+.or {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}

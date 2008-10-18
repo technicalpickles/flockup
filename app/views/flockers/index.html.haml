@@ -1,14 +1,12 @@
-%h1 Listing flockers
 
-%table
-  %tr
-    %th Twitter username
+%p
+  Here you can find all the flockers we know about so far.
 
+%p
+  ="Missing someone? How about you #{link_to 'tell us about them', new_flocker_path}?"
+
+%ul
   - for flocker in @flockers
-    %tr
-      %td= h flocker.twitter_username
-      %td= link_to 'Show', flocker
-      %td= link_to 'Edit', edit_flocker_path(flocker)
-      %td= link_to 'Destroy', flocker, :confirm => 'Are you sure?', :method => :delete
-
-%p= link_to 'New flocker', new_flocker_path
+    %li= link_to h(flocker.twitter_username), flocker
+    
+%p= link_to 'Add someone', new_flocker_path

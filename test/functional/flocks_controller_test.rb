@@ -20,12 +20,8 @@ class FlocksControllerTest < ActionController::TestCase
     
     should_link_to 'flock_path(@flock)'
 
-    should "display tabs" do
-      assert_select "ul.tabs"
-    end
-    should "have flocks tag selected" do
-      assert_select "li a.current", "Flocks"
-    end
+    should_display_tabs
+    should_have_current_tab 'Flocks'
   end
   
   context "viewing new flock form" do
