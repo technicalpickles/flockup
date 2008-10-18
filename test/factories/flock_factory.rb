@@ -1,4 +1,4 @@
 Factory.define :flock do |flock|
-  flock.name 'MyString'
+  flock.name 'mystring'
   flock.description 'MyText'
 end
