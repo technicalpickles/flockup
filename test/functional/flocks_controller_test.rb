@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class FlocksControllerTest < ActionController::TestCase
   def setup
-    @flock = Factory(:flock, :flockers => (1..2).collect { Factory(:flocker) })
+    @flock = Factory(:flock, :name => 'mrt', :description => 'the a team', :flockers => (1..2).collect { Factory(:flocker) })
     assert_equal 2, @flock.flockers.count
     
     @flocks = [@flock]
@@ -38,7 +38,7 @@ class FlocksControllerTest < ActionController::TestCase
     end
   end
   
-  context "submitting the flock form successfully" do
+  context "submitting the flock form for a new flock" do
     setup do
       assert_nothing_raised {
         post :create, :flock => {:name => 'awesome', :description => 'nothing is awesomer than the a team'}
@@ -52,6 +52,20 @@ class FlocksControllerTest < ActionController::TestCase
     should_change "Flock.count", :by => 1
   end
   
+  context "submitting the flock form for a flock that already exists" do
+    setup do
+      assert_nothing_raised {
+        post :create, :flock => {:name => 'mrt', :description => 'nothing is awesomer than the a team'}
+      }
+    end
+
+    should_respond_with :redirect
+    should_redirect_to "flock_path(@flock)"
+    should_set_the_flash_to /is already a flock named mrt/i
+    should_not_change "Flock.count"
+    should_not_change "@flock.description"
+  end
+
   context "viewing a flock" do
     setup do
       assert_nothing_raised { get :show, :id => @flock }
