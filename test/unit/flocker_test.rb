@@ -15,8 +15,29 @@ class FlockerTest < ActiveSupport::TestCase
   
   context "a new flocker with valid twitter_username" do
     setup do
-      TwitterVerifier.stubs(:valid_username).with(:twitter_username).returns(true)
-      @flocker = Factory.build(:flocker, :twitter_username => 'whattheflock')
+      @flocker = Factory.build(:flocker, :twitter_username => 'flockup')
+      @flocker.stubs(:valid_username?).with('flockup').returns(true)
+    end
+
+    should "be unverified" do
+      assert @flocker.unverified?
+    end
+    
+    context "after marking attempting verification" do
+      setup do
+        @flocker.verify!
+      end
+
+      should "now be verified" do
+        deny @flocker.unverified?, "flocker was unverified, but should have been verified"
+      end
+    end
+  end
+  
+  context "description" do
+    setup do
+      @flocker = Factory.build(:flocker, :twitter_username => 'flockup')
+      @flocker.stubs(:valid_username?).with('flockup').returns(false)
     end
 
     should "be unverified" do
@@ -28,9 +49,10 @@ class FlockerTest < ActiveSupport::TestCase
         @flocker.verify!
       end
 
-      should "now be verified" do
-        deny @flocker.unverified?, "flocker was unverified, but should have been verified"
+      should "still be unverified" do
+        assert @flocker.unverified?, "flocker was verified, but should have been unverified"
       end
     end
   end
+  
 end
