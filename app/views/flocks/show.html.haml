@@ -1,32 +1,36 @@
-%h1= @flock.name
 
-%p
-  Welcome to the
-  %span.flock= @flock.name
-  flock.
-  Here's what we know about it:
 
-- unless @flock.description.blank?
-  %blockquote= h(@flock.description)
-- else
-  %p Hmm, sorry, we got nothin on them.
+%div{:class => 'prepend-6 span-12 append-6 column last'}
+  %h1= @flock.name
+  %p
+    Welcome to the
+    %span.flock= @flock.name
+    flock.
+    - unless @flock.description.blank?
+      Here's what we know about it:
 
-%p
-  And here's everyone that's flocked to
-  %span.flock= @flock.name
-  = '...'
+  - unless @flock.description.blank?
+    %blockquote= h(@flock.description)
 
-- if @flock.flockers.count > 1
-  %ul
-    - @flock.flockers.each do |flocker|
-      - unless flocker.new_record?
-        %li[flocker]= link_to(flocker.twitter_username, flocker_path(flocker))
-  %p How about adding someone else?
-  - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
-    = form.text_field :twitter_username
-    = form.submit 'Add flocker'
-- else
-  %p My, this flock is pretty empty. How about adding someone?
-  - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
-    = form.text_field :twitter_username
-    = form.submit 'Add flocker'
+%div
+  - if @flock.flockers.size > 1
+    %p
+      And here's everyone that's flocked to
+      %span.flock= @flock.name
+      = '...'
+    %table
+      - @flock.flockers.in_groups_of(7).each do |flockers_in_row|
+        %tr
+          - flockers_in_row.each do |flocker|
+            - unless flocker.nil? || flocker.new_record?
+              %td[flocker]= link_to(flocker.twitter_username, flocker_path(flocker))
+    %p How about adding someone else?
+    - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
+      = form.text_field :twitter_username
+      = form.submit 'Add flocker'
+      
+  - else
+    %p My, this flock is pretty empty. How about adding someone?
+    - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
+      = form.text_field :twitter_username
+      = form.submit 'Add flocker'
