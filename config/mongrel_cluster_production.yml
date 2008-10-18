@@ -1,6 +1,6 @@
 --- 
-# cwd: /home/CHANGEME/apps/CHANGEME/current
-# port: "3030"
+cwd: /home/deploy/apps/flockup/current
+port: "3030"
 environment: production
 address: 127.0.0.1
 pid_file: log/mongrel.pid

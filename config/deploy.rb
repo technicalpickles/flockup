@@ -1,7 +1,14 @@
 set :stages, %w(staging production)
 set :default_stage, 'staging'
 set :ssh_options, { :forward_agent => true }
-set :rake, "/opt/ruby-enterprise-1.8.6-20080810/bin/rake" 
+set :rake, "/opt/ruby-enterprise-1.8.6-20080810/bin/rake"
+
+set :application, 'flockup'
+
+# We need to know how to use mongrel
+set :mongrel_rails, '/opt/ruby-enterprise-1.8.6-20080810/bin/mongrel_rails'
+set :mongrel_cluster_config, "#{deploy_to}/#{current_dir}/config/mongrel_cluster_production.yml"
+
 ssh_options[:paranoid] = false
 
 gem 'capistrano-ext'
