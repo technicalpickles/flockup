@@ -13,4 +13,5 @@ Rails::Initializer.run do |config|
                                           :lib => 'will_paginate', 
                                           :source => 'http://gems.github.com/'
   config.gem 'jnunemaker-twitter', :lib => 'twitter', :source => 'http://gems.github.com'
+  config.gem 'httparty'
 end
