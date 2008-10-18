@@ -9,12 +9,12 @@ set :deploy_via, :remote_cache
 set :branch, "production"
 
 # Where to deploy to?
-role :web, "production.example.com"
-role :app, "production.example.com"
-role :db,  "production.example.com", :primary => true
+role :web, "twitterflocks.r08.railsrumble.com"
+role :app, "twitterflocks.r08.railsrumble.com"
+role :db,  "twitterflocks.r08.railsrumble.com", :primary => true
 
 # Deploy details
-set :user, "#{application}"
+set :user, "deploy"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :use_sudo, false
 set :checkout, 'export'

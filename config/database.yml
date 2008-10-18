@@ -1,3 +1,5 @@
+<% PASSWORD_FILE = File.join(RAILS_ROOT, '..', '..', 'shared', 'config', 'dbpassword') %>
+
 defaults: &defaults
  adapter: mysql
  username: root
@@ -11,7 +13,19 @@ development:
 test:
  database: flockup_test
  <<: *defaults
+ 
+staging:
+  <<: *defaults
+  database: <%= PROJECT_NAME %>_staging
+  username: <%= PROJECT_NAME %>
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
+  encoding: utf8
+  socket: /var/run/mysqld/mysqld.sock
 
 production:
- database: flockup_production
- <<: *defaults
+  adapter: mysql
+  database: <%= PROJECT_NAME %>_production
+  username: <%= PROJECT_NAME %>
+  password: <%= File.read(PASSWORD_FILE).chomp if File.readable? PASSWORD_FILE %>
+  encoding: utf8
+  socket: /var/run/mysqld/mysqld.sock

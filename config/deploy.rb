@@ -1,5 +1,10 @@
 set :stages, %w(staging production)
 set :default_stage, 'staging'
+set :ssh_options, { :forward_agent => true }
+set :rake, "/opt/ruby-enterprise-1.8.6-20080810/bin/rake" 
+ssh_options[:paranoid] = false
+
+gem 'capistrano-ext'
 require 'capistrano/ext/multistage'
 
 before "deploy:setup", "db:password"
