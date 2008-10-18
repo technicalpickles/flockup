@@ -38,9 +38,13 @@ class DashboardControllerTest < ActionController::TestCase
     end
   end
 
-  context "searching for something that isn't there" do
+  context "searching for a flock or flocker that isn't there" do
     setup do
-      get :search, :search => 'nonexistant user'
+      Factory(:flock, :name => 'dontfindme')
+      Factory(:flocker, :twitter_username => 'dontfindme')
+      Factory(:flock, :name => 'dontfindme2')
+      Factory(:flocker, :twitter_username => 'dontfindme2')
+      get :search, :search => 'nonexistant'
     end
 
     should_respond_with :success
@@ -49,16 +53,32 @@ class DashboardControllerTest < ActionController::TestCase
     end
   end
       
-  context "searching for a flock" do
+  context "searching for a flock and finding one" do
     setup do
       Factory(:flock, :name => 'dontfindme')
-      @target_flock = Factory(:flock, :name => 'searchtest')
       Factory(:flock, :name => 'dontfindmeeither')
+      Factory(:flocker, :twitter_username => 'dontfindme')
+      Factory(:flocker, :twitter_username => 'dontfindmeeither')
+      @target_flock = Factory(:flock, :name => 'searchtest')
       get :search, :search => 'searchtest'
     end
 
     should_respond_with :redirect
     should_redirect_to "flock_url(@target_flock)"
+  end
+      
+  context "searching for a flocker and finding one" do
+    setup do
+      Factory(:flock, :name => 'dontfindme')
+      Factory(:flock, :name => 'dontfindmeeither')
+      Factory(:flocker, :twitter_username => 'dontfindme')
+      Factory(:flocker, :twitter_username => 'dontfindmeeither')
+      @target_flocker = Factory(:flocker, :twitter_username => 'loveinallthewrongplaces')
+      get :search, :search => 'loveinallthewrongplaces'
+    end
+
+    should_respond_with :redirect
+    should_redirect_to "flocker_url(@target_flocker)"
   end
       
 end
