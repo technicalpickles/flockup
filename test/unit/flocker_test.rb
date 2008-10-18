@@ -13,13 +13,23 @@ class FlockerTest < ActiveSupport::TestCase
     should_require_unique_attributes :twitter_username
   end
   
-  context "a new flock" do
+  context "a new flocker with valid twitter_username" do
     setup do
-      @flock = Factory.build(:flocker, :twitter_username => 'techpickles')
+      @flocker = Factory.build(:flocker, :twitter_username => 'whattheflock')
     end
 
     should "be unverified" do
-      assert @flock.unverified?
+      assert @flocker.unverified?
+    end
+    
+    context "after marking as verified" do
+      setup do
+        @flocker.verify!
+      end
+
+      should "now be verified" do
+        deny @flocker.unverified?, "flocker was unverified, but should have been verified"
+      end
     end
   end
 end
