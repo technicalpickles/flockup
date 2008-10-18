@@ -19,4 +19,20 @@ class FlocksControllerTest < ActionController::TestCase
     should_link_to 'flock_path(@flock)'
   end
   
+  context "viewing new flock form" do
+    setup do
+      assert_nothing_raised { get :new }
+    end
+    
+    should_respond_with :success
+    should_render_template :new
+    
+    should 'have a form, with fields for name, and description, and submit' do
+      assert_select "form[action=#{flocks_path}]" do
+        assert_select "input[name='flock[name]']"
+        assert_select "textarea[name='flock[description]']"
+        assert_select "input[type=submit]"
+      end
+    end
+  end
 end

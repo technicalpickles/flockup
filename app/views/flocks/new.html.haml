@@ -1,0 +1,9 @@
+%dl
+  - form_for @flock do |form|
+    %dt= form.label :name
+    %dd= form.text_field :name
+    
+    %dt= form.label :description
+    %dd= form.text_area :description
+    
+    %div= form.submit
