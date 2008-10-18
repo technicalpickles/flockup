@@ -44,7 +44,9 @@ class DashboardControllerTest < ActionController::TestCase
     end
 
     should_respond_with :success
-    should_set_the_flash_to /no results/i
+    should "display no results found" do
+      assert_select "div#search_results", /0\s+results./
+    end
   end
       
   context "searching for a flock" do
