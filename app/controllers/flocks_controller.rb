@@ -11,7 +11,7 @@ class FlocksController < ApplicationController
   def create
     flock = Flock.find(:first, :conditions => ['name = ?', params[:flock][:name]])
     if flock
-      flash[:notice] = "There is already a flock named #{params[:flock][:name]}."
+      flash[:notice] = "There is already a flock named #{params[:flock][:name]}.  Here it is:"
       redirect_to :action => 'show', :id => flock
     else
       @flock = Flock.new(params[:flock])

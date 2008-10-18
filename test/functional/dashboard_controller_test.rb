@@ -21,12 +21,7 @@ class DashboardControllerTest < ActionController::TestCase
         assert_select "input[type=submit]"
       end
     end
-    should 'have a form for creating a new flock' do
-      assert_select "form[action=#{new_flock_path}]" do
-        assert_select "input[name='name']"
-        assert_select "input[type=submit]"
-      end
-    end
+    should_link_to 'new_flock_path'
   end
 
   context "searching" do
