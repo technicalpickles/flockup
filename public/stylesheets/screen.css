@@ -4,19 +4,15 @@ a, a:hover {
 a:visited {
   color: #44372e; }
 
-#header {
-}
-  #header h1 {
-    color: white; }
-  #header a {
+  #tabs a {
     color: white;
     text-decoration: none; }
-  #header ul {
+  #tabs ul {
     font-size: 1.4em;
     margin: 0;
     padding: 0;
     list-style-type: none; }
-    #header ul li {
+    #tabs ul li {
       display: inline;
       border: 1px solid black;
       border-bottom: 0px;
@@ -24,24 +20,28 @@ a:visited {
       padding-bottom: 3px;
       color: #fff;
       text-decoration: none;}
-      #header ul li {
+      #tabs ul li {
         background-color: rgb(51, 73, 85);}
-      #header ul li:hover {
+      #tabs ul li:hover {
         background-color: rgb(81, 107, 120); }
-    #header ul li.current {
+    #tabs ul li.current {
       color: #000;
       background-color: #fff; }
-      #header ul li.current a {
+      #tabs ul li.current a {
         color: #000;}
-      #header ul li.current:hover {
+      #tabs ul li.current:hover {
         background-color: rgb(81, 107, 120); }
-        #header ul li.current:hover a {
+        #tabs ul li.current:hover a {
           color: white;
         }
 #content {
   padding-top: 30px;
   padding-bottom: 30px;
   border: 1px solid black;
+}
+
+.spacer {
+  color: #fff;
 }
 
 .or {
@@ -57,3 +57,4 @@ span.flock {
 #footer {
   text-align: center;
 }
+
