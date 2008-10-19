@@ -6,7 +6,6 @@ module TwitterVerifier
 protected
 
   def lookup_twitter_user(username)
-    breakpoint
     begin
       twitter.user(self.twitter_username)
     rescue Twitter::CantConnect => e
