@@ -26,6 +26,11 @@ class Flocker < ActiveRecord::Base
   attr_accessible :twitter_username
   
   has_friendly_id :twitter_username
+  
+  cattr_accessor :per_row
+  @@per_row = 5
+  cattr_accessor :per_page
+  @@per_page = @@per_row*7
 
   
   def unverified_twitter_username?

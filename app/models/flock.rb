@@ -10,6 +10,11 @@ class Flock < ActiveRecord::Base
   
   has_friendly_id :name
   
+  cattr_accessor :per_row
+  @@per_row = 5
+  cattr_accessor :per_page
+  @@per_page = @@per_row*7
+  
   def notify_added(flocker)
     unless flocker.twitter_username.blank? || !flocker.verified_twitter_username?
       flocker.notify_on_twitter("you've been added to the #{self.name} flock #{APP_URL}/flocks/#{self.id}")
