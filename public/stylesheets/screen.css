@@ -121,6 +121,10 @@ textarea {
   height: 125px;
 }
 
+input[type=text] {
+  border: 1px solid #BBBBBB
+}
+
 #footer {
   text-align: center;
   margin-top: 5px;
