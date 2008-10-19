@@ -12,6 +12,7 @@
   %li socialmedia
 
 - form_for @flock do |form|
+  = form.error_messages
   %dl
     %dt= form.label :name
     %dd= form.text_field :name
