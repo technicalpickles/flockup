@@ -1,43 +1,60 @@
+body {
+  background: rgb(171, 218, 252);
+  color: rgb(51, 73, 85);
+}
+
 a, a:hover {
   color: #39548c; }
 
 a:visited {
   color: #44372e; }
 
-  #tabs a {
-    color: white;
-    text-decoration: none; }
-  #tabs ul {
-    font-size: 1.4em;
-    margin: 0;
-    padding: 0;
-    list-style-type: none; }
-    #tabs ul li {
-      display: inline;
-      border: 1px solid black;
-      border-bottom: 0px;
-      padding: .3em;
-      padding-bottom: 3px;
-      color: #fff;
-      text-decoration: none;}
-      #tabs ul li {
-        background-color: rgb(51, 73, 85);}
-      #tabs ul li:hover {
-        background-color: rgb(81, 107, 120); }
-    #tabs ul li.current {
-      color: #000;
-      background-color: #fff; }
-      #tabs ul li.current a {
-        color: #000;}
-      #tabs ul li.current:hover {
-        background-color: rgb(81, 107, 120); }
-        #tabs ul li.current:hover a {
-          color: white;
-        }
+#nav {
+  float: right;
+  width: 702px;
+  margin: 0px -2px 0px 0px;
+  padding: 10px 0 0 250px;
+  list-style: none;
+  background: rgb(171, 218, 252);
+  font-size: 1.4em;
+  border-bottom: 2px solid;
+  border-color: rgb(147, 187, 216);
+}
+
+#nav li {
+  float: left;
+  margin: 0 1px 0 0;
+  padding: 0;
+  position: relative;
+  top: 2px;
+}
+
+#nav li a {
+  color: white;
+  float: left;
+  display: block;
+  margin: 0;
+  padding: 4px 8px;
+  text-decoration: none;
+  border: 2px solid;
+  border-color: rgb(147, 187, 216);
+  /*background: rgb(51, 73, 85);*/
+  background: rgb(147, 187, 216);
+}
+
+#nav li.current a {
+  border-bottom-color: #fff;
+  background: #fff;
+  color: rgb(51, 73, 85);
+}
+
 #content {
   padding-top: 30px;
   padding-bottom: 30px;
-  border: 1px solid black;
+  border: 2px solid;
+  border-color: rgb(147, 187, 216);
+  border-top-style: none;
+  background: #fff;
 }
 
 .spacer {
