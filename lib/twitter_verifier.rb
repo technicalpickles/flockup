@@ -1,6 +1,6 @@
 module TwitterVerifier
-  def valid_username?(username)
-    ! lookup_twitter_user(username).nil?
+  def valid_username?()
+    ! lookup_twitter_user(self.twitter_username).nil?
   end
   
 protected

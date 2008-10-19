@@ -1,5 +1,5 @@
 module TwitterVerifier
-  def valid_username?(username)
+  def valid_username?()
     true
   end
 end
