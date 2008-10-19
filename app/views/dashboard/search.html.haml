@@ -1,7 +1,7 @@
-%h1= "#{@results.size} results for #{params[:serach]}"
+
 
 #search_results
-  
+  %h1.result_count= "#{@results.size} results for #{params[:serach]}"
   %ul
     - @results.each do |result|
       %li
