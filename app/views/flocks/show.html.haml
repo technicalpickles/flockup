@@ -12,12 +12,7 @@
   - if @flock.flockers.size > 2 # there's always going to be 1, because we 'build' a flocker
     %p
       And here's everyone that's flocked to it...
-    %table.flockers
-      - @flock.flockers.not_invalid.in_groups_of(7).each do |flockers_in_row|
-        %tr
-          - flockers_in_row.each do |flocker|
-            - unless flocker.nil? || flocker.new_record?
-              %td{:class => flocker.status}= link_to(flocker.twitter_username, flocker_path(flocker))
+    = render :partial => 'flockers/table', :locals => {:flockers => @flock.flockers.not_invalid.paginate(:page => params[:page])}
               
     %p Like what you see? Maybe you should follow some of these flockers. To do so, click through each flocker's twitter page, and follow them by hand. Confused? <a href="http://help.twitter.com/index.php?pg=kb.page&id=76">Read more about what followers and following is all about</a>.
     

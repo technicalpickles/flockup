@@ -13,7 +13,7 @@
         - flocks_in_row.each do |flock|
           %td{:width => "#{100/Flock.per_row}%"}= link_to(flock.name, flock) if flock
   %tfoot
-    %th{:colspan => 7}= will_paginate(@flocks)
+    %th{:colspan => Flock.per_row}= will_paginate(@flocks)
 
   %a{:href => new_flock_path, :class => 'button'}
     = image_tag 'create_a_new_flock.png', :alt => 'Create A New Flock'
