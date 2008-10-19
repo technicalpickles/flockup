@@ -24,6 +24,8 @@ class Flocker < ActiveRecord::Base
   named_scope :not_invalid, :conditions => ['status != ?', INVALID]
   
   attr_accessible :twitter_username
+  
+  has_friendly_id :twitter_username
 
   
   def unverified_twitter_username?

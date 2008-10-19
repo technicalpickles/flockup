@@ -82,10 +82,10 @@ class FlockersControllerTest < ActionController::TestCase
     should_not_change "@flock.flockers.count"
   end
   
-  context "viewing a flocker" do
+  context "viewing a flocker by twitter username" do
     setup do
       assert_nothing_raised do
-        get :show, :id => @flocker.to_param
+        get :show, :id => @flocker.twitter_username
       end
     end
 
@@ -104,5 +104,16 @@ class FlockersControllerTest < ActionController::TestCase
       
     end
   end
+  
+  context "viewing a flocker by id" do
+    setup do
+      assert_nothing_raised do
+        get :show, :id => @flocker.id
+      end
+    end
+
+    should_redirect_to "flocker_url(@flocker)"
+  end
+  
   
 end

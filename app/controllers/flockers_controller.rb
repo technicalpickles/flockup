@@ -2,6 +2,10 @@ class FlockersController < ApplicationController
   before_filter :load_enclosing_resources, :if => :enclosing_resource?
   resources_controller_for :flockers, :in => :flock, :only => [:index, :new, :create, :show]
   
+  def show
+    self.resource = find_resource
+    redirect_to self.resource, :status => 301 if self.resource.has_better_id?
+  end
   def create
     self.resource = new_resource
     
