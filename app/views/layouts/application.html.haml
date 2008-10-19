@@ -11,12 +11,13 @@
   %body
     .container
       #header{:class => 'column span-24'}
-        %a{:href => root_path}
+        %a{:class => 'span-6', :href => root_path}
           = image_tag 'logo.png'
-        %ul{:class => 'tabs'}
+        %ul{:class => 'tabs span-6'}
           = tab_for 'flocks'
           = tab_for 'flockers'
-      #content{:class => 'column span-24'}
+        
+      #content{:class => 'column append-1 prepend-1 span-22'}
         - flash.each do |key, value|
           %div{:class => key}= h(value)
         = yield

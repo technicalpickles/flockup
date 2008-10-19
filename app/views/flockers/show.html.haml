@@ -3,11 +3,19 @@
   = "#{@flocker.twitter_username}'s"
   FlockUp profile. Check out what we know about them.
 
-.info{:class => 'span-12 column'}
+.info{:class => 'span-11 column'}
   %h3 Profile
-  =link_to @flocker.twitter_username, "http://twitter.com/#{@flocker.twitter_username}"
+  %dl
+    %dt Twitter username
+    %dd= link_to @flocker.twitter_username, "http://twitter.com/#{@flocker.twitter_username}"
+    
+    %dt Flocker status
+    %dd= @flocker.status || "Unknown"
+    
+    %dt Last updated
+    %dd= @flocker.updated_at
 
-.flocks{:class => 'span-12 column last'}
+.flocks{:class => 'span-11 column last'}
   %h3 Flocks
   %ul
     - @flocker.flocks.each do |flock|
