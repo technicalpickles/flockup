@@ -10,18 +10,23 @@ class Flocker < ActiveRecord::Base
   
   has_and_belongs_to_many :flocks
   validates_uniqueness_of :twitter_username
+  validates_presence_of :twitter_username
+  validates_length_of :twitter_username, :within => 1..15
+  validates_inclusion_of :status, :in => [UNVERIFIED, INVALID, VERIFIED], :message => 'is not included in the list'
   
   after_create :queue_for_verification
-  before_validation_on_create :set_unverified
+  before_validation_on_create :set_unverified, :unless => :status?
   
   named_scope :unverified, :conditions => ['status = ?', UNVERIFIED]
   named_scope :verified, :conditions => ['status = ?', VERIFIED]
   named_scope :invalid, :conditions => ['status = ?', INVALID]
   named_scope :not_invalid, :conditions => ['status != ?', INVALID]
+  
+  attr_accessible :twitter_username
 
   
   def unverified_twitter_username?
-    self[:status].blank? 
+    self[:status].blank? || self[:status] == UNVERIFIED
   end
   
   def verified_twitter_username?
@@ -34,10 +39,12 @@ class Flocker < ActiveRecord::Base
   
   def verify_twitter_username
     if valid_username?()
-      self.update_attributes(:status => 'verified')
+      self.status = VERIFIED
+      self.save!
       push('notify_about_flockup')
     else
-      self.update_attributes(:status => 'invalid')
+      self.status = INVALID
+      self.save!
     end
   end
   

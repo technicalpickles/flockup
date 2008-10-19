@@ -5,6 +5,12 @@ class FlockerTest < ActiveSupport::TestCase
   should_have_db_column :twitter_username
   should_have_and_belong_to_many :flocks
   
+  should_allow_values_for :status, 'unverified', 'invalid', 'verified'
+  should_require_attributes :twitter_username
+  should_ensure_length_in_range :twitter_username, (1..15)
+  should_not_allow_values_for :status, 'adsfad', :message => 'is not included in the list'
+
+  
   context "An existing flock" do
     setup do
       @flocker = Factory(:flocker)
