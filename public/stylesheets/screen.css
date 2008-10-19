@@ -1,10 +1,11 @@
 body {
   background: rgb(171, 218, 252);
   color: rgb(51, 73, 85);
+  font-size: 90%;
 }
 
-p {
-  font-size: 1.2em;
+h1 {
+  font-size: 1.75em;
 }
 
 a, a:hover {
