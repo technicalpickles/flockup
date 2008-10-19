@@ -16,7 +16,7 @@ class FlocksControllerTest < ActionController::TestCase
     should_respond_with :success
     should_render_template :index
     
-    should_link_to 'new_flock_path'
+    should_link_to 'new_flock_path', 2
     
     should_link_to 'flock_path(@flock)'
 
@@ -81,8 +81,10 @@ class FlocksControllerTest < ActionController::TestCase
     should_eventually "display the description"
     
     should "display a link to view each flocker" do
-      @flock.flockers.each do |flocker|
-        assert_select "a[href=#{flocker_path(flocker)}]"
+      assert_select '.flockers', 1 do
+        @flock.flockers.each do |flocker|
+          assert_select "a[href=#{flocker_path(flocker)}]"
+        end
       end
     end
     
@@ -94,6 +96,19 @@ class FlocksControllerTest < ActionController::TestCase
       end
     end
   end
+  
+  context "viewing a flock without any flockers" do
+    setup do
+      @empty_flock = Factory(:flock)
+      assert_nothing_raised { get :show, :id => @flock }
+    end
+
+    # not sure why this fails...
+    should_eventually "not display any flockers" do
+      assert_select '.flockers', 0
+    end
+  end
+  
   
   
 end
