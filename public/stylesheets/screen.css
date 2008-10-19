@@ -3,6 +3,10 @@ body {
   color: rgb(51, 73, 85);
 }
 
+p {
+  font-size: 1.2em;
+}
+
 a, a:hover {
   color: #39548c; }
 
@@ -11,8 +15,8 @@ a:visited {
 
 #nav {
   float: right;
-  width: 702px;
-  margin: 0px -2px 0px 0px;
+  width: 704px;
+  margin: 0px -4px 0px 0px;
   padding: 10px 0 0 250px;
   list-style: none;
   background: rgb(171, 218, 252);
