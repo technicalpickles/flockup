@@ -13,6 +13,4 @@
   
   %h2 Not what you were looking for?
 
-- form_tag :dashboard_search, :method => :get do
-  = text_field_tag 'search'
-  = image_submit_tag 'search.png'
+= render :partial => 'form'

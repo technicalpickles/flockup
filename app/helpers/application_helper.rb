@@ -2,7 +2,9 @@ module ApplicationHelper
 
   def tab_li_attributes(name)
     attributes = {}
-    attributes[:class] = 'current' if controller.controller_name == name
+    if controller.controller_name == name.underscore || controller.controller_name.singularize == name.underscore
+      attributes[:class] = 'current'
+    end
     attributes
   end
 
