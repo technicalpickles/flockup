@@ -4,7 +4,7 @@ class DashboardController < ApplicationController
   end
   
   def search
-    @results = Flock.find(:all, :conditions => ['name = ?', params[:search]])
+    @results = Flock.find(:all, :conditions => ['name LIKE ?', "%#{params[:search].downcase}%"])
     if @results.size == 1
       redirect_to :controller => 'flocks', :action => 'show', :id => @results.first
     end

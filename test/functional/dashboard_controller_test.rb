@@ -22,9 +22,7 @@ class DashboardControllerTest < ActionController::TestCase
       end
     end
     should_link_to 'new_flock_path'
-    should "display tabs" do
-      assert_select "ul.tabs"
-    end
+    should_display_tabs
   end
 
   context "searching" do
@@ -60,9 +58,9 @@ class DashboardControllerTest < ActionController::TestCase
   context "searching for a flock and finding one" do
     setup do
       Factory(:flock, :name => 'dontfindme')
-      Factory(:flock, :name => 'dontfindmeeither')
+      Factory(:flock, :name => 'meneither')
       Factory(:flocker, :twitter_username => 'dontfindme')
-      Factory(:flocker, :twitter_username => 'dontfindmeeither')
+      Factory(:flocker, :twitter_username => 'meneither')
       @target_flock = Factory(:flock, :name => 'searchtest')
       get :search, :search => 'searchtest'
     end
@@ -74,15 +72,31 @@ class DashboardControllerTest < ActionController::TestCase
   context "searching for a flocker and finding one" do
     setup do
       Factory(:flock, :name => 'dontfindme')
-      Factory(:flock, :name => 'dontfindmeeither')
+      Factory(:flock, :name => 'meneither')
       Factory(:flocker, :twitter_username => 'dontfindme')
-      Factory(:flocker, :twitter_username => 'dontfindmeeither')
-      @target_flocker = Factory(:flocker, :twitter_username => 'loveinallthewrongplaces')
-      get :search, :search => 'loveinallthewrongplaces'
+      Factory(:flocker, :twitter_username => 'meneither')
+      @target_flocker = Factory(:flocker, :twitter_username => 'ohhaithere')
+      get :search, :search => 'ohhaithere'
     end
 
     should_respond_with :redirect
     should_redirect_to "flocker_url(@target_flocker)"
   end
+  
+  context "searching for a term with 2 flocks results" do
+    setup do
+      @ruby_flock = Factory(:flock, :name => 'ruby')
+      @rubyonrails_flock = Factory(:flock, :name => 'rubyonrails')
+      
+      get :search, :search => 'ruby'
+    end
+
+    should_respond_with :success
+    should_render_template :search
+    
+    should_link_to 'flock_path(@ruby_flock)'
+    should_link_to 'flock_path(@rubyonrails_flock)'
+  end
+  
       
 end

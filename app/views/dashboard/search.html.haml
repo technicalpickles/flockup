@@ -1,7 +1,15 @@
 - form_tag :dashboard_search, :method => :get do
   = text_field_tag 'search'
   = submit_tag 'Search'
+
 #search_results
-  = @results.size
-  results.
+  = "#{@results.size} results."
+  
+  %ul
+    - @results.each do |result|
+      %li
+        - if result.kind_of? Flock
+          = link_to "#{result.name} flock", result
+        - elsif result.kind_of? Flocker
+          = link_to "#{result.twitter_username} flocker", result
   
