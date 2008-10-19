@@ -36,7 +36,6 @@ class FlocksControllerTest < ActionController::TestCase
       assert_select "form[action=#{flocks_path}]" do
         assert_select "input[name='flock[name]']"
         assert_select "textarea[name='flock[description]']"
-        assert_select "input[type=submit]"
       end
     end
   end

@@ -30,4 +30,5 @@
     %p My, this flock is pretty empty. How about adding someone?
     - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
       = form.text_field :twitter_username
-      = form.submit 'Add flocker'
+      = image_submit_tag 'add_flocker.png'
+      

@@ -18,7 +18,6 @@ class DashboardControllerTest < ActionController::TestCase
     should 'have a search form' do
       assert_select "form[action=#{dashboard_search_path}]" do
         assert_select "input[name='search']"
-        assert_select "input[type=submit]"
       end
     end
     should_link_to 'new_flock_path'
@@ -35,7 +34,6 @@ class DashboardControllerTest < ActionController::TestCase
     should 'have a search form' do
       assert_select "form[action=#{dashboard_search_path}]" do
         assert_select "input[name='search']"
-        assert_select "input[type=submit]"
       end
     end
   end
