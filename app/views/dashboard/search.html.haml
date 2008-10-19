@@ -1,9 +1,6 @@
-- form_tag :dashboard_search, :method => :get do
-  = text_field_tag 'search'
-  = submit_tag 'Search'
+%h1= "#{@results.size} results for #{params[:serach]}"
 
 #search_results
-  = "#{@results.size} results."
   
   %ul
     - @results.each do |result|
@@ -13,3 +10,8 @@
         - elsif result.kind_of? Flocker
           = link_to "#{result.twitter_username} flocker", result
   
+%h2 Not what you were looking for?
+
+- form_tag :dashboard_search, :method => :get do
+  = text_field_tag 'search'
+  = submit_tag 'Search'
