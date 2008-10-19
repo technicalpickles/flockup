@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include HoptoadNotifier::Catcher
+  
   helper :all # include all helpers, all the time
 
   # Uncomment the :secret if you're not using the cookie session store
