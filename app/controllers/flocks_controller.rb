@@ -1,5 +1,13 @@
 class FlocksController < ApplicationController
-  resources_controller_for :flocks, :only => [:index, :new]
+  resources_controller_for :flocks, :only => [:index, :new, :create]
+  
+  def index
+    self.resources = find_resources
+  end
+  
+  def new
+    self.resource = new_resource
+  end
   
   def show
     self.resource = find_resource
@@ -28,6 +36,11 @@ class FlocksController < ApplicationController
         end
       end
     end
+  end
+
+protected
+  def find_resources
+    resource_service.paginate :page => params[:page]
   end
   
 end

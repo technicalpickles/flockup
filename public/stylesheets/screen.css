@@ -77,9 +77,18 @@ span.flock {
    font-weight: bold;
 }
 
+tfoot {
+  font-style: normal;
+}
+
 #footer {
   text-align: center;
   margin-top: 5px;
+}
+
+th {
+  background-color: rgb(171, 218, 252);
+  text-align: center;
 }
 
 #find_a_flock {

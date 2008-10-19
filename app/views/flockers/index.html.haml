@@ -4,12 +4,7 @@
   Here you can find all the flockers we know about so far.
   ="Missing someone? How about you #{link_to 'tell us about them', new_flocker_path}?"
 
-%table.flockers
-  - @flockers.in_groups_of(7).each do |flockers_in_row|
-    %tr
-      - flockers_in_row.each do |flocker|
-        - if flocker
-          %td{:class => flocker.status}= link_to(flocker.twitter_username, flocker)
+= render :partial => 'flockers/table', :locals => {:flockers => @flockers.not_invalid.paginate(:page => params[:page])}
 
-  %a{:href => new_flocker_path, :class => 'button'}
-    = image_tag 'add_someone.png', :alt => 'Add Someone'
+%a{:href => new_flocker_path, :class => 'button'}
+  = image_tag 'add_someone.png', :alt => 'Add Someone'
