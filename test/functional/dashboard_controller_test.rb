@@ -25,9 +25,6 @@ class DashboardControllerTest < ActionController::TestCase
     should "display tabs" do
       assert_select "ul.tabs"
     end
-    should "have dashboard tag selected" do
-      assert_select "li a.current", "Dashboard"
-    end
   end
 
   context "searching" do
