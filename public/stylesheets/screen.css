@@ -5,7 +5,6 @@ a:visited {
   color: #44372e; }
 
 #header {
-  margin-bottom: 20px;
 }
   #header h1 {
     color: white; }
@@ -19,17 +18,31 @@ a:visited {
     list-style-type: none; }
     #header ul li {
       display: inline;
-      padding: .5em 0; }
-      #header ul li a {
-        text-decoration: none;
-        padding: .3em 1em;
-        color: #fff;
-        background-color: rgb(51, 73, 85); }
-      #header ul li a:hover {
+      border: 1px solid black;
+      border-bottom: 0px;
+      padding: .3em;
+      padding-bottom: 3px;
+      color: #fff;
+      text-decoration: none;}
+      #header ul li {
+        background-color: rgb(51, 73, 85);}
+      #header ul li:hover {
         background-color: rgb(81, 107, 120); }
-    #header ul a.current {
+    #header ul li.current {
       color: #000;
       background-color: #fff; }
+      #header ul li.current a {
+        color: #000;}
+      #header ul li.current:hover {
+        background-color: rgb(81, 107, 120); }
+        #header ul li.current:hover a {
+          color: white;
+        }
+#content {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border: 1px solid black;
+}
 
 .or {
   margin-bottom: 1em;
