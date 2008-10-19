@@ -1,9 +1,16 @@
-%dl
-  %dt Twitter username
-  %dd= link_to h(@flocker.twitter_username), "http://twitter.com/#{@flocker.twitter_username}"
+%p
+  This is
+  = "#{@flocker.twitter_username}'s"
+  FlockUp profile. Check out what we know about them.
 
-  %dt Flocks
-  %dd
-    %ul
-      - @flocker.flocks.each do |flock|
-        %li= link_to flock.name, flock
+.info{:class => 'span-12 column'}
+  %h3 Profile
+  =link_to @flocker.twitter_username, "http://twitter.com/#{@flocker.twitter_username}"
+
+.flocks{:class => 'span-12 column last'}
+  %h3 Flocks
+  %ul
+    - @flocker.flocks.each do |flock|
+      %li= link_to flock.name, flock
+    - if @flocker.flocks.empty?
+      %li Awww, no flocks

@@ -1,6 +1,4 @@
-
-
-%div{:class => 'prepend-6 span-12 append-6 column last'}
+%div{:class => 'span-24 column'}
   %h1= @flock.name
   %p
     Welcome to the
@@ -8,16 +6,12 @@
     flock.
     - unless @flock.description.blank?
       Here's what we know about it:
+      %i= %Q("#{h(@flock.description)}")
 
-  - unless @flock.description.blank?
-    %blockquote= h(@flock.description)
-
-%div
+%div{:class => 'span-24 column'}
   - if @flock.flockers.size > 2 # there's always going to be 1, because we 'build' a flocker
     %p
-      And here's everyone that's flocked to
-      %span.flock= @flock.name
-      = '...'
+      And here's everyone that's flocked to it...
     %table.flockers
       - @flock.flockers.in_groups_of(7).each do |flockers_in_row|
         %tr
