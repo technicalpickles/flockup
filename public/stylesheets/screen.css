@@ -117,6 +117,10 @@ tfoot {
   font-style: normal;
 }
 
+textarea {
+  height: 125px;
+}
+
 #footer {
   text-align: center;
   margin-top: 5px;
