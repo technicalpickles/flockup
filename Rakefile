@@ -13,5 +13,16 @@ begin
   require 'vlad'
   Vlad.load :scm => :git
   require 'vlad/extras'
+  
+
 rescue LoadError
+end
+
+desc "Tag the release"
+task :tag => ['git:push:staging', 'git:push:production'] do
+end
+
+
+desc "Deploy the release"
+task :deploy => ['vlad:update', 'vlad:migrate', 'vlad:start_app'] do
 end
