@@ -132,6 +132,14 @@ th {
 }
 
 #find_a_flock_field {
-  vertical-align: top;
+  margin-top: 20px;
+}
+
+#search_button {
+  vertical-align: middle;
+}
+
+#search_field {
+  margin-top: 20px;
 }
 
