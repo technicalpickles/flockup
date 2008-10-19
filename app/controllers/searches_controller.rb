@@ -1,6 +1,11 @@
 class SearchesController < ApplicationController
   def new
   end
+  
+  def index
+    redirect_to new_search_path
+  end
+  
   def create
     redirect_to search_path(params[:search])
   end
