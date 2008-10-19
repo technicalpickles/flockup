@@ -1,6 +1,14 @@
 class FlocksController < ApplicationController
   resources_controller_for :flocks, :only => [:index, :new]
   
+  def index
+    self.resources = find_resources
+  end
+  
+  def new
+    self.resource = new_resource
+  end
+  
   def show
     self.resource = find_resource
     redirect_to self.resource, :status => 301 if self.resource.has_better_id?
