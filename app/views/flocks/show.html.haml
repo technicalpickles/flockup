@@ -18,11 +18,14 @@
           - flockers_in_row.each do |flocker|
             - unless flocker.nil? || flocker.new_record?
               %td[flocker]= link_to(flocker.twitter_username, flocker_path(flocker))
+              
+    %p Like what you see? Maybe you should follow some of these flockers. To do so, click through each flocker's twitter page, and follow them by hand. Confused? <a href="http://help.twitter.com/index.php?pg=kb.page&id=76">Read more about what followers and following is all about</a>.
+    
     %p How about adding someone else?
     - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
       = form.text_field :twitter_username
       = form.submit 'Add flocker'
-      
+  
   - else
     %p My, this flock is pretty empty. How about adding someone?
     - form_for @flocker, :url => flock_flockers_path(@flock) do |form|
