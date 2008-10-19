@@ -16,7 +16,7 @@ class FlockerTest < ActiveSupport::TestCase
   context "a new flocker with valid twitter_username" do
     setup do
       @flocker = Factory.build(:flocker, :twitter_username => 'flockup')
-      @flocker.stubs(:valid_username?).with('flockup').returns(true)
+      @flocker.stubs(:valid_username?).with().returns(true)
     end
 
     should "be unverified" do
@@ -37,7 +37,7 @@ class FlockerTest < ActiveSupport::TestCase
   context "description" do
     setup do
       @flocker = Factory.build(:flocker, :twitter_username => 'flockup')
-      @flocker.stubs(:valid_username?).with('flockup').returns(false)
+      @flocker.stubs(:valid_username?).with().returns(false)
     end
 
     should "be unverified" do
