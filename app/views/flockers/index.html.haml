@@ -4,6 +4,8 @@
   Here you can find all the flockers we know about so far.
   ="Missing someone? How about you #{link_to 'tell us about them', new_flocker_path}?"
 
+%h1 Flockers
+
 = render :partial => 'flockers/table', :locals => {:flockers => @flockers.not_invalid.paginate(:page => params[:page])}
 
 %a{:href => new_flocker_path, :class => 'button'}
