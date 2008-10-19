@@ -3,6 +3,10 @@
 - if @results
   #search_results
     %h1.result_count= "#{@results.size} results for #{@search_terms}"
+    - if @results.size == 0
+      %p
+        But you can
+        = link_to 'go ahead and create the flock!', new_flock_path
     %ul
       - @results.each do |result|
         %li
