@@ -1,7 +1,7 @@
 !!! Transitional
 %html
   %head
-    %title= "flockup: #{controller.controller_name}: #{controller.action_name}"
+    %title= "FlockUp #{':' if yield(:title)} #{yield(:title)}"
     = stylesheet_link_tag 'blueprint/screen', :media => 'screen'
     = stylesheet_link_tag 'blueprint/print', :media => 'print'
     = "<!--[if IE]>#{stylesheet_link_tag 'blueprint/ie', :media => 'screen'}<![endif]-->"

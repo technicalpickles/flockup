@@ -51,16 +51,16 @@ class DashboardControllerTest < ActionController::TestCase
 
     should_respond_with :success
     should "display no results found" do
-      assert_select "div#search_results", /0\s+results./
+      assert_select ".result_count", /0\s+results./
     end
   end
       
   context "searching for a flock and finding one" do
     setup do
       Factory(:flock, :name => 'dontfindme')
-      Factory(:flock, :name => 'dontfindmeeither')
+      Factory(:flock, :name => 'meneither')
       Factory(:flocker, :twitter_username => 'dontfindme')
-      Factory(:flocker, :twitter_username => 'dontfindmeeither')
+      Factory(:flocker, :twitter_username => 'meneither')
       @target_flock = Factory(:flock, :name => 'searchtest')
       get :search, :search => 'searchtest'
     end
@@ -72,15 +72,61 @@ class DashboardControllerTest < ActionController::TestCase
   context "searching for a flocker and finding one" do
     setup do
       Factory(:flock, :name => 'dontfindme')
-      Factory(:flock, :name => 'dontfindmeeither')
+      Factory(:flock, :name => 'meneither')
       Factory(:flocker, :twitter_username => 'dontfindme')
-      Factory(:flocker, :twitter_username => 'dontfindmeeither')
-      @target_flocker = Factory(:flocker, :twitter_username => 'loveinallthewrongplaces')
-      get :search, :search => 'loveinallthewrongplaces'
+      Factory(:flocker, :twitter_username => 'meneither')
+      @target_flocker = Factory(:flocker, :twitter_username => 'ohhaithere')
+      get :search, :search => 'ohhaithere'
     end
 
     should_respond_with :redirect
     should_redirect_to "flocker_url(@target_flocker)"
   end
+  
+  context "searching for a term with 2 flocks results" do
+    setup do
+      @ruby_flock = Factory(:flock, :name => 'ruby')
+      @rubyonrails_flock = Factory(:flock, :name => 'rubyonrails')
+      
+      get :search, :search => 'ruby'
+    end
+
+    should_respond_with :success
+    should_render_template :search
+    
+    should_link_to 'flock_path(@ruby_flock)'
+    should_link_to 'flock_path(@rubyonrails_flock)'
+  end
+  
+  context "searching for a term with 2 flocker results" do
+    setup do
+      @techpickles_flocker = Factory(:flocker, :twitter_username => 'techpickles')
+      @pickles_flocker = Factory(:flocker, :twitter_username => 'pickles')
+      get :search, :search => 'pickles'
+    end
+
+    should_respond_with :success
+    should_render_template :search
+    
+    should_link_to 'flocker_path(@techpickles_flocker)'
+    should_link_to 'flocker_path(@pickles_flocker)'
+  end
+  
+  # context "search for a term with mixed results" do
+  #   setup do
+  #     @ruby_flock = Factory(:flock, :name => 'ruby')
+  #     @rubyist_flocker = Factory(:flocker, :twitter_username => 'flocker')
+  #     get :search, :search => 'ruby'
+  #   end
+  #   
+  #   should_respond_with :success
+  #   should_render_template :search
+  #   
+  #   should_link_to 'flock_path(@ruby_flock)'
+  #   should_link_to 'flocker_path(@rubyist_flocker)'
+  # end
+  
+  
+  
       
 end

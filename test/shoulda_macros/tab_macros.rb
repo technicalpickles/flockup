@@ -2,7 +2,7 @@ Test::Unit::TestCase.class_eval do
   class << self
     def should_display_tabs
       should "display tabs" do
-        assert_select "div#tabs"
+        assert_select ".tabs"
       end      
     end
     
