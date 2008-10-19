@@ -24,6 +24,8 @@ class Flocker < ActiveRecord::Base
   named_scope :not_invalid, :conditions => ['status != ?', INVALID]
   
   attr_accessible :twitter_username
+  
+  has_friendly_id :twitter_username
 
   
   def unverified_twitter_username?
@@ -50,7 +52,7 @@ class Flocker < ActiveRecord::Base
   end
   
   def notify_about_flockup
-    notify_on_twitter "hey, someone tagged you on flockup. check it out! http://twitterflocks.r08.railsrumble.com/flockers/#{self.to_param}"
+    notify_on_twitter "hey, someone added you to flockup.com. check it out! #{APP_URL}/flockers/#{self.id}"
   end
 protected
   def set_unverified

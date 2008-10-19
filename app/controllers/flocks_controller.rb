@@ -3,6 +3,7 @@ class FlocksController < ApplicationController
   
   def show
     self.resource = find_resource
+    redirect_to self.resource, :status => 301 if self.resource.has_better_id?
     @flocker = self.resource.flockers.build
   end
   

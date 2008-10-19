@@ -8,15 +8,17 @@ class Flock < ActiveRecord::Base
   
   attr_accessible :name, :description
   
+  has_friendly_id :name
+  
   def notify_added(flocker)
-    unless flocker.twitter_username.blank?
-      flocker.notify_on_twitter("you've been added to the #{self.name} flock #{APP_URL}/flocks/#{self.name}")
+    unless flocker.twitter_username.blank? || !flocker.verified_twitter_username?
+      flocker.notify_on_twitter("you've been added to the #{self.name} flock #{APP_URL}/flocks/#{self.id}")
     end
   end
   
   def notify_removed(flocker)
-    unless flocker.twitter_username.blank?
-      flocker.notify_on_twitter("you've been removed from the #{self.name} flock #{APP_URL}/flocks/#{self.name}")
+    unless flocker.twitter_username.blank? || !flocker.verified_twitter_username?
+      flocker.notify_on_twitter("you've been removed from the #{self.name} flock #{APP_URL}/flocks/#{self.id}")
     end
   end
 end
