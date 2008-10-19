@@ -17,6 +17,7 @@ class Flocker < ActiveRecord::Base
   
   after_create :queue_for_verification
   before_validation_on_create :set_unverified, :unless => :status?
+  before_validation :lowercase_twitter_username
   
   named_scope :unverified, :conditions => ['status = ?', UNVERIFIED]
   named_scope :verified, :conditions => ['status = ?', VERIFIED]
@@ -58,6 +59,10 @@ class Flocker < ActiveRecord::Base
 protected
   def set_unverified
     self[:status] = UNVERIFIED
+  end
+  
+  def lowercase_twitter_username
+    self.twitter_username &&= twitter_username.downcase
   end
   
   def queue_for_verification
