@@ -1,4 +1,4 @@
-%div{:class => 'span-24 column'}
+%div{:class => 'span-22'}
   %h1= @flock.name
   %p
     Welcome to the
@@ -8,7 +8,7 @@
       Here's what we know about it:
       %i= %Q("#{h(@flock.description)}")
 
-%div{:class => 'span-24 column'}
+%div{:class => 'span-22'}
   - if @flock.flockers.size > 2 # there's always going to be 1, because we 'build' a flocker
     %p
       And here's everyone that's flocked to it...
