@@ -29,7 +29,8 @@ a:visited {
 
 #nav li.current a {
   border-bottom-style: solid;
-  background: #f00;
+  background: #fff;
+  color: #000;
 }
 
 #nav li a {
