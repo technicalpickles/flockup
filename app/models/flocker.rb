@@ -12,7 +12,7 @@ class Flocker < ActiveRecord::Base
     self[:status] != 'verified'
   end
   
-  def verify!
+  def verify_twitter_username
     if valid_username?(self.twitter_username)
       self.update_attributes(:status => 'verified')
     else
@@ -22,6 +22,7 @@ class Flocker < ActiveRecord::Base
   
 protected
   def queue_for_verification
-    FlockerWorker.async_verify(:id => self.id)
+    push('verify_twitter_username')
+    # FlockerWorker.async_verify(:id => self.id)
   end
 end

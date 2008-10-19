@@ -25,7 +25,7 @@ class FlockerTest < ActiveSupport::TestCase
     
     context "after marking attempting verification" do
       setup do
-        @flocker.verify!
+        @flocker.verify_twitter_username
       end
 
       should "now be verified" do
@@ -46,7 +46,7 @@ class FlockerTest < ActiveSupport::TestCase
     
     context "after marking as verified" do
       setup do
-        @flocker.verify!
+        @flocker.verify_twitter_username
       end
 
       should "still be unverified" do
