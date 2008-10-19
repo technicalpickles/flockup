@@ -1,9 +1,21 @@
-%dl
-  - form_for @flock do |form|
+%p
+  A flock allows you to group together birds of a feather on twitter. Maybe it's a common interest, an event, a location, or anything you want really.
+
+%p Some examples to get you started:
+
+%ul
+  %li railsrumble
+  %li boston
+  %li javascript
+  %li socialmedia
+
+- form_for @flock do |form|
+  %dl
     %dt= form.label :name
     %dd= form.text_field :name
+    %dd Required. Must be lowercase letters, numbers, or underscores (_)
     
     %dt= form.label :description
     %dd= form.text_area :description
-    
-    %div= form.submit
+    %dd Optional. Perhaps a few words describing this flock
+  %div= form.submit "Create flock"
