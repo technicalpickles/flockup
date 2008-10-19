@@ -8,6 +8,8 @@ class Flock < ActiveRecord::Base
   
   attr_accessible :name, :description
   
+  has_friendly_id :name
+  
   def notify_added(flocker)
     unless flocker.twitter_username.blank?
       flocker.notify_on_twitter("you've been added to the #{self.name} flock #{APP_URL}/flocks/#{self.id}")

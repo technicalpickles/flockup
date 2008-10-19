@@ -69,9 +69,9 @@ class FlocksControllerTest < ActionController::TestCase
     should_not_change "@flock.description"
   end
 
-  context "viewing a flock" do
+  context "viewing a flock by name" do
     setup do
-      assert_nothing_raised { get :show, :id => @flock }
+      assert_nothing_raised { get :show, :id => @flock.name }
     end
 
     should_respond_with :success
@@ -96,6 +96,15 @@ class FlocksControllerTest < ActionController::TestCase
       end
     end
   end
+  
+  context "viewing a flock by id" do
+    setup do
+      assert_nothing_raised { get :show, :id => @flock.id }
+    end
+
+    should_redirect_to "flock_url(@flock)"
+  end
+  
   
   context "viewing a flock without any flockers" do
     setup do
