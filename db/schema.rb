@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081018145621) do
+ActiveRecord::Schema.define(:version => 20081019165302) do
 
   create_table "flockers", :force => true do |t|
     t.string   "twitter_username"
@@ -22,6 +22,9 @@ ActiveRecord::Schema.define(:version => 20081018145621) do
     t.integer "flock_id"
     t.integer "flocker_id"
   end
+
+  add_index "flockers_flocks", ["flock_id"], :name => "index_flockers_flocks_on_flock_id"
+  add_index "flockers_flocks", ["flocker_id"], :name => "index_flockers_flocks_on_flocker_id"
 
   create_table "flocks", :force => true do |t|
     t.string   "name"
