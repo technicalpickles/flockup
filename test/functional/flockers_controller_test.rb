@@ -98,7 +98,7 @@ class FlockersControllerTest < ActionController::TestCase
     end
 
     should_not_link_to 'edit_flocker_path(@flocker)'
-    should_link_to '"http://twitter.com/#{@flocker.twitter_username}"'
+    should_link_to '"http://twitter.com/flockup"', 2
     
     should_eventually "have form to add them to a flock" do
       
