@@ -137,17 +137,24 @@ th {
 
 #find_a_flock {
   vertical-align: middle;
+  padding-left: 10px;
 }
 
 #find_a_flock_field {
-  margin-top: 20px;
+  margin-top: 25px;
+  border-color: rgb(51, 73, 85);
 }
 
 #search_button {
-  vertical-align: middle;
+  vertical-align: top;
 }
 
 #search_field {
   margin-top: 20px;
+}
+
+#after_search_button {
+  margin-top: 50px;
+  vertical-align: bottom;
 }
 

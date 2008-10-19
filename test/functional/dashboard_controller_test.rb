@@ -20,7 +20,6 @@ class DashboardControllerTest < ActionController::TestCase
         assert_select "input[name='search']"
       end
     end
-    should_link_to 'new_flock_path'
     should_display_tabs
   end
   
