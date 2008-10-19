@@ -17,13 +17,16 @@ class Flock < ActiveRecord::Base
   
   def notify_added(flocker)
     unless flocker.twitter_username.blank? || !flocker.verified_twitter_username?
-      flocker.notify_on_twitter("you've been added to the #{self.name} flock #{APP_URL}/flocks/#{self.id}")
+      @notice = Notification.create(:flocker => flocker, :text => "hey, someone added you to flockup.com. check it out! #{APP_URL}/flockers/#{self.id}")
+      @notice.push('notify_flocker')
     end
   end
   
   def notify_removed(flocker)
     unless flocker.twitter_username.blank? || !flocker.verified_twitter_username?
-      flocker.notify_on_twitter("you've been removed from the #{self.name} flock #{APP_URL}/flocks/#{self.id}")
+      @notice = Notification.create(:flocker => flock, :text => "you've been added to the #{flock.name} flock #{APP_URL}/flocks/#{flock.id}")
+      @notice.push('notify_flocker')
     end
   end
+  
 end

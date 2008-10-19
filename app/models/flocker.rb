@@ -55,10 +55,6 @@ class Flocker < ActiveRecord::Base
       self.save!
     end
   end
-  
-  def notify_about_flockup
-    notify_on_twitter "hey, someone added you to flockup.com. check it out! #{APP_URL}/flockers/#{self.id}"
-  end
 protected
   def set_unverified
     self[:status] = UNVERIFIED
