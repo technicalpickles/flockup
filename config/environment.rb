@@ -14,5 +14,5 @@ Rails::Initializer.run do |config|
                                           :lib => 'will_paginate', 
                                           :source => 'http://gems.github.com/'
   config.load_paths += Dir.glob(File.join(RAILS_ROOT, 'vendor', 'gems', '*', 'lib'))
-   # config.gem 'fiveruns_tuneup'
+
 end
