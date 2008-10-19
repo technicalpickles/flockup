@@ -13,13 +13,10 @@
   %p
     Don't know what Twitter is, or just starting out? Check out <a href="http://www.youtube.com/watch?v=ddO9idmax0o">this great introductory video</a> by <a href="http://commoncraft.com">commoncraft.com</a>
 
-  %h2 Find your flock!
   - form_tag :dashboard_search, :method => :get do
-    = text_field_tag 'search'
-    = submit_tag 'Search'
+    %input{:id => 'find_a_flock', :type => 'image', :src => 'images/find_a_flock.png'}
+    = text_field_tag 'search', nil, :id => 'find_a_flock_field'
     
-  %h3.or or...
-
   %a{:href => new_flock_path, :class => 'button'}
     = image_tag 'start_your_own_flock.png', :alt => 'Start Your Own Flock'
 
