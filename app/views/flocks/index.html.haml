@@ -9,4 +9,5 @@
       - flocks_in_row.each do |flock|
         %td= link_to(flock.name, flock) if flock
 
-= link_to 'Create a flock', new_flock_path
+  %a{:href => new_flock_path, :class => 'button'}
+    = image_tag 'create_a_new_flock.png', :alt => 'Create A New Flock'
