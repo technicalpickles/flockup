@@ -13,10 +13,8 @@
       #logo{:class => 'column span-24 last'}
         %a{:href => root_path}
           = image_tag 'logo.png'
-      #empty{:class => 'column span-6'}
-        &nbsp;
-      #tabs{:class => 'tabs column span-18 last'}
-        %ul
+      #tabs{:class => 'tabs column span-24 last'}
+        %ul{:id => 'nav'}
           = tab_for 'flocks'
           = tab_for 'flockers'
         

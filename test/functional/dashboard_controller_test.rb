@@ -22,9 +22,7 @@ class DashboardControllerTest < ActionController::TestCase
       end
     end
     should_link_to 'new_flock_path'
-    should "display tabs" do
-      assert_select "ul.tabs"
-    end
+    should_display_tabs
   end
 
   context "searching" do
