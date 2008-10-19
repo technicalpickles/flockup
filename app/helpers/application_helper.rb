@@ -2,7 +2,6 @@ module ApplicationHelper
 
   def tab_li_attributes(name)
     attributes = {}
-    breakpoint
     if controller.controller_name == name.underscore || controller.controller_name.singularize == name.underscore
       attributes[:class] = 'current'
     end
