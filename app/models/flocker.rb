@@ -50,7 +50,7 @@ class Flocker < ActiveRecord::Base
   end
   
   def notify_about_flockup
-    notify_on_twitter "hey, someone tagged you on flockup. check it out! http://twitterflocks.r08.railsrumble.com/flockers/#{self.to_param}"
+    notify_on_twitter "hey, someone tagged you on flockup.com. check it out! #{APP_URL}/flockers/#{self.id}"
   end
 protected
   def set_unverified

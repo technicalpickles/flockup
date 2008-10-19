@@ -10,8 +10,8 @@ class FlockTest < ActiveSupport::TestCase
   should_ensure_length_in_range :name, (2..20)
   should_require_unique_attributes :name
   
-  should_not_allow_values_for :name, "asdfa ", "asdf!", "zxzi*", "2zxv()", "boston.rb", "oh_hai", "1--", "MyString"
-  should_allow_values_for :name, "ruby", "rails", "railsrumble2008"
+  should_not_allow_values_for :name, "asdfa ", "asdf!", "zxzi*", "2zxv()", "boston.rb", "1--", "MyString"
+  should_allow_values_for :name, "ruby", "rails", "railsrumble2008", "oh_hai"
   
   should_have_index :name
   

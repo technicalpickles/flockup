@@ -10,13 +10,13 @@ class Flock < ActiveRecord::Base
   
   def notify_added(flocker)
     unless flocker.twitter_username.blank?
-      flocker.notify_on_twitter("you've been added to the #{self.name} flock #{APP_URL}/flocks/#{self.name}")
+      flocker.notify_on_twitter("you've been added to the #{self.name} flock #{APP_URL}/flocks/#{self.id}")
     end
   end
   
   def notify_removed(flocker)
     unless flocker.twitter_username.blank?
-      flocker.notify_on_twitter("you've been removed from the #{self.name} flock #{APP_URL}/flocks/#{self.name}")
+      flocker.notify_on_twitter("you've been removed from the #{self.name} flock #{APP_URL}/flocks/#{self.id}")
     end
   end
 end
