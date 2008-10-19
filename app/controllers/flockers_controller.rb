@@ -43,6 +43,10 @@ class FlockersController < ApplicationController
   end
   
 protected
+  def find_resources
+    self.resources = resource_service.not_invalid
+  end
+  
   def enclosing_resource?
     ! params[:flock_id].blank?
   end

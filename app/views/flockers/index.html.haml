@@ -4,9 +4,10 @@
   ="Missing someone? How about you #{link_to 'tell us about them', new_flocker_path}?"
 
 %table.flockers
-  - @flockers.not_invalid.in_groups_of(7).each do |flockers_in_row|
+  - @flockers.in_groups_of(7).each do |flockers_in_row|
     %tr
       - flockers_in_row.each do |flocker|
-        %td{:class => flocker.status}= link_to(flocker.twitter_username, flocker) if flocker
+        - if flocker
+          %td{:class => flocker.status}= link_to(flocker.twitter_username, flocker)
 
 %p= link_to 'Add someone', new_flocker_path

@@ -9,6 +9,7 @@ class FlockerTest < ActiveSupport::TestCase
   should_require_attributes :twitter_username
   should_ensure_length_in_range :twitter_username, (1..15)
   should_not_allow_values_for :status, 'adsfad', :message => 'is not included in the list'
+  should_not_allow_values_for :twitter_username, '   ', '--', '()@$'
 
   
   context "An existing flock" do

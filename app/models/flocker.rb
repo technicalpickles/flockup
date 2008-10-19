@@ -12,6 +12,7 @@ class Flocker < ActiveRecord::Base
   validates_uniqueness_of :twitter_username
   validates_presence_of :twitter_username
   validates_length_of :twitter_username, :within => 1..15
+  validates_format_of :twitter_username, :with => /^[a-z\d_]+$/
   validates_inclusion_of :status, :in => [UNVERIFIED, INVALID, VERIFIED], :message => 'is not included in the list'
   
   after_create :queue_for_verification
