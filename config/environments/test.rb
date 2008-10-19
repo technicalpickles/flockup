@@ -14,3 +14,5 @@ config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http:/
 config.gem 'redgreen'
 config.gem 'ruby-debug'
 config.gem 'ZenTest', :lib => 'test/rails'
+
+APP_URL="http://localhost:3000"
