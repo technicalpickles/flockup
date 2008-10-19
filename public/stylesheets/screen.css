@@ -1,5 +1,6 @@
 body {
   background: rgb(171, 218, 252);
+  color: rgb(51, 73, 85);
 }
 
 a, a:hover {
@@ -16,7 +17,8 @@ a:visited {
   list-style: none;
   background: rgb(171, 218, 252);
   font-size: 1.4em;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid;
+  border-color: rgb(147, 187, 216);
 }
 
 #nav li {
@@ -24,13 +26,7 @@ a:visited {
   margin: 0 1px 0 0;
   padding: 0;
   position: relative;
-  top: 3px;
-}
-
-#nav li.current a {
-  border-bottom-style: solid;
-  background: #fff;
-  color: #000;
+  top: 2px;
 }
 
 #nav li a {
@@ -40,15 +36,23 @@ a:visited {
   margin: 0;
   padding: 4px 8px;
   text-decoration: none;
-  border: 1px solid #000;
-  border-bottom: none;
-  background: rgb(51, 73, 85);
+  border: 2px solid;
+  border-color: rgb(147, 187, 216);
+  /*background: rgb(51, 73, 85);*/
+  background: rgb(147, 187, 216);
+}
+
+#nav li.current a {
+  border-bottom-color: #fff;
+  background: #fff;
+  color: rgb(51, 73, 85);
 }
 
 #content {
   padding-top: 30px;
   padding-bottom: 30px;
-  border: 1px solid black;
+  border: 2px solid;
+  border-color: rgb(147, 187, 216);
   border-top-style: none;
   background: #fff;
 }
