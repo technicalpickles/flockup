@@ -1,6 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :flockers
   map.resources :flocks, :has_many => :flockers
+  map.resources :searches, :as => 'search'
   map.root :controller => 'dashboard', :action => 'index'
   map.dashboard_search '/dashboard/search', :controller => 'dashboard', :action => 'search'
   map.about '/pages/about', :controller => 'pages', :action => 'about'
