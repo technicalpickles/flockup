@@ -16,7 +16,7 @@ class FlocksController < ApplicationController
   end
 
   def create
-    self.resource = Flock.find(:first, :conditions => ['name = ?', params[:flock][:name]])
+    self.resource = resource_service.find_by_name params[:flock][:name]
     if resource
       flash[:notice] = "There is already a flock named #{params[:flock][:name]}.  Here it is:"
       redirect_to resource_url
