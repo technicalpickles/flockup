@@ -1,4 +1,4 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class NotificationTest < ActiveSupport::TestCase
   # Replace this with your real tests.
