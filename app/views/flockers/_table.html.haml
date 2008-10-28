@@ -7,7 +7,7 @@
     %tr
       - flockers_in_row.each do |flocker|
         - unless flocker.nil? || flocker.new_record?
-          %td{:width => "#{Flocker.per_row/100}%", :class => flocker.status}= link_to(flocker.twitter_username, flocker_path(flocker))
+          %td{:width => "#{100/Flocker.per_row}%", :class => flocker.status}= link_to(flocker.twitter_username, flocker_path(flocker))
   - if flockers.total_pages > 1
     %tfoot
       %th{:colspan => Flocker.per_row}= will_paginate(flockers)
