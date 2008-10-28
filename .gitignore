@@ -1,3 +1,5 @@
 log/*.log
 tmp/*
 log/workling*.*
+metrics
+coverage.data
