@@ -35,6 +35,5 @@ class FlocksController < ApplicationController
 protected
   def find_resources
     resource_service.paginate :page => params[:page]
-  end
-  
+  end  
 end
