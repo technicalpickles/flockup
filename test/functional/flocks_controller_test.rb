@@ -67,6 +67,18 @@ class FlocksControllerTest < ActionController::TestCase
     should_not_change "Flock.count"
     should_not_change "@flock.description"
   end
+  
+  context "submitting the flock form which fails" do
+    setup do
+      assert_nothing_raised {
+        post :create, :flock => {:name => '', :description => 'nothing is awesomer than the a team'}
+      }
+    end
+
+    should_respond_with :success
+    should_render_template :new
+  end
+  
 
   context "viewing a flock by name" do
     setup do

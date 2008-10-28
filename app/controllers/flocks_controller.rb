@@ -1,5 +1,5 @@
 class FlocksController < ApplicationController
-  resources_controller_for :flocks, :only => [:index, :new, :create]
+  resources_controller_for :flocks, :only => [:index, :new, :show, :create]
   
   def index
     self.resources = find_resources
@@ -14,26 +14,20 @@ class FlocksController < ApplicationController
     redirect_to self.resource, :status => 301 if self.resource.has_better_id?
     @flocker = self.resource.flockers.build
   end
-  
-  # POST /flocks
-  # POST /flocks.xml
-  def create
-    flock = Flock.find(:first, :conditions => ['name = ?', params[:flock][:name]])
-    if flock
-      flash[:notice] = "There is already a flock named #{params[:flock][:name]}.  Here it is:"
-      redirect_to :action => 'show', :id => flock
-    else
-      @flock = Flock.new(params[:flock])
 
-      respond_to do |format|
-        if @flock.save
-          flash[:notice] = 'Flock was successfully created.'
-          format.html { redirect_to(@flock) }
-          format.xml  { render :xml => @flock, :status => :created, :location => @flock }
-        else
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @flock.errors, :status => :unprocessable_entity }
-        end
+  def create
+    self.resource = Flock.find(:first, :conditions => ['name = ?', params[:flock][:name]])
+    if resource
+      flash[:notice] = "There is already a flock named #{params[:flock][:name]}.  Here it is:"
+      redirect_to resource_url
+    else
+      self.resource = new_resource
+
+      if resource.save
+        flash[:notice] = 'Flock was successfully created.'
+        redirect_to resource_url
+      else
+        render :action => "new"
       end
     end
   end
