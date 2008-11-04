@@ -17,7 +17,7 @@ class Flock < ActiveRecord::Base
   
   def notify_added(flocker)
     unless flocker.twitter_username.blank? || !flocker.verified_twitter_username?
-      @notice = Notification.create(:flocker => flocker, :text => "hey, someone added you to flockup.com. check it out! #{APP_URL}/flockers/#{self.id}")
+      @notice = Notification.create(:flocker => flocker, :text => "flockup.com provides user-generated groups for twitter and someone added you: #{APP_URL}/flockers/#{self.id}")
       @notice.push('notify_flocker')
     end
   end
