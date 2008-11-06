@@ -6,7 +6,7 @@ Description:
     model's attributes. Timestamps are added by default, so you don't have to
     specify them by hand as 'created_at:datetime updated_at:datetime'.
 
-    This generates a file in test/factories.
+    This generates a file in test/factories or spec/factories.
 
 Examples:
     `./script/generate factory account`
