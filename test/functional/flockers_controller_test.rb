@@ -3,10 +3,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 class FlockersControllerTest < ActionController::TestCase
   
   def setup
-    @flocker = Factory(:flocker, :twitter_username => 'flockup', :flocks => [Factory(:flock)])
-    assert_equal 1, @flocker.flocks.count
+    @flocker1 = Factory(:flocker, :twitter_username => 'aaaaa', :flocks => [Factory(:flock)])
+    @flocker2 = Factory(:flocker, :twitter_username => 'bbbbb', :flocks => [Factory(:flock)])
+    assert_equal 1, @flocker1.flocks.count
 
-    @flockers = [@flocker]
+    @flockers = [@flocker1, @flocker2]
     @flock = Factory(:flock)
   end
   
@@ -57,7 +58,7 @@ class FlockersControllerTest < ActionController::TestCase
   context "submitting an existing flocker to a new flock" do
     setup do
       assert_nothing_raised do
-        post :create, :flock_id => @flock.to_param, :flocker => {:twitter_username => @flocker.twitter_username}
+        post :create, :flock_id => @flock.to_param, :flocker => {:twitter_username => @flocker1.twitter_username}
       end
     end
 
@@ -71,7 +72,7 @@ class FlockersControllerTest < ActionController::TestCase
   context "submitting an existing flocker to a flock they are already in" do
     setup do
       assert_nothing_raised do
-        post :create, :flock_id => @flocker.flocks.first.to_param, :flocker => {:twitter_username => @flocker.twitter_username}
+        post :create, :flock_id => @flocker1.flocks.first.to_param, :flocker => {:twitter_username => @flocker1.twitter_username}
       end
     end
     
@@ -85,20 +86,20 @@ class FlockersControllerTest < ActionController::TestCase
   context "viewing a flocker by twitter username" do
     setup do
       assert_nothing_raised do
-        get :show, :id => @flocker.twitter_username
+        get :show, :id => @flocker1.twitter_username
       end
     end
 
     should_respond_with :success
     
     should "link to each of their flocks" do
-      @flocker.flocks.each do |flock|
+      @flocker1.flocks.each do |flock|
         assert_select "a[href=#{flock_path(flock)}]"
       end
     end
 
-    should_not_link_to 'edit_flocker_path(@flocker)'
-    should_link_to '"http://twitter.com/flockup"', 2
+    should_not_link_to 'edit_flocker_path(@flocker1)'
+    should_link_to '"http://twitter.com/#{@flocker1.twitter_username}"', 1
     
     should_eventually "have form to add them to a flock" do
       
@@ -108,12 +109,11 @@ class FlockersControllerTest < ActionController::TestCase
   context "viewing a flocker by id" do
     setup do
       assert_nothing_raised do
-        get :show, :id => @flocker.id
+        get :show, :id => @flocker1.id
       end
     end
 
-    should_redirect_to "flocker_url(@flocker)"
+    should_redirect_to "flocker_url(@flocker1)"
   end
-  
   
 end

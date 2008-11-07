@@ -6,7 +6,7 @@
 
 %h1 Flockers
 
-= render :partial => 'flockers/table', :locals => {:flockers => @flockers.not_invalid.paginate(:page => params[:page])}
+= render :partial => 'flockers/table', :locals => {:flockers => @flockers.paginate(:page => params[:page])}
 
 %a{:href => new_flocker_path, :class => 'button'}
   = image_tag 'add_someone.png', :alt => 'Add Someone'

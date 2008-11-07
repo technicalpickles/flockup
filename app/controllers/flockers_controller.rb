@@ -46,7 +46,7 @@ class FlockersController < ApplicationController
   
 protected
   def find_resources
-    self.resources = resource_service.not_invalid
+    self.resources = resource_service.not_invalid.find(:all, :order => :twitter_username)
   end
   
   def enclosing_resource?
