@@ -3,11 +3,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 class FlockersControllerTest < ActionController::TestCase
   
   def setup
-    @flocker1 = Factory(:flocker, :twitter_username => 'aaaaa', :flocks => [Factory(:flock)])
+    @flocker1 = Factory(:flocker, :twitter_username => 'ccccc', :flocks => [Factory(:flock)])
     @flocker2 = Factory(:flocker, :twitter_username => 'bbbbb', :flocks => [Factory(:flock)])
     assert_equal 1, @flocker1.flocks.count
 
-    @flockers = [@flocker1, @flocker2]
+    @flockers = [@flocker2, @flocker1]
     @flock = Factory(:flock)
   end
   
