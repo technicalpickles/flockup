@@ -3,15 +3,7 @@ class SearchesController < ApplicationController
   end
   
   def index
-    redirect_to new_search_path
-  end
-  
-  def create
-    redirect_to search_path(params[:search])
-  end
-  
-  def show
-    @search_terms = params[:id]
+    @search_terms = params[:q]
 
     unless @search_terms.blank?
       @search_terms = @search_terms.downcase
@@ -21,5 +13,9 @@ class SearchesController < ApplicationController
         redirect_to @results.first
       end
     end
+  end
+  
+  def create
+    redirect_to searches_path(:q => params[:q])
   end
 end

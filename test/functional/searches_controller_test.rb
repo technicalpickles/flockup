@@ -3,14 +3,14 @@ require File.dirname(__FILE__) + '/../test_helper'
 class SearchesControllerTest < ActionController::TestCase
   context "viewing results for a page" do
     setup do
-      get :show, :id => 'something'
+      get :index, :q => 'something'
     end
 
     should_respond_with :success
-    should_render_template :show
+    should_render_template :index
     should 'have a search form' do
       assert_select "form[action=#{searches_path}]" do
-        assert_select "input[name='search']"
+        assert_select "input[name='q']"
       end
     end
   end
@@ -30,7 +30,7 @@ class SearchesControllerTest < ActionController::TestCase
       Factory(:flocker, :twitter_username => 'dontfindme')
       Factory(:flock, :name => 'dontfindme2')
       Factory(:flocker, :twitter_username => 'dontfindme2')
-      get :show, :id => 'nonexistant'
+      get :index, :q => 'nonexistant'
     end
 
     should_respond_with :success
@@ -46,7 +46,7 @@ class SearchesControllerTest < ActionController::TestCase
       Factory(:flocker, :twitter_username => 'dontfindme')
       Factory(:flocker, :twitter_username => 'meneither')
       @target_flock = Factory(:flock, :name => 'searchtest')
-      get :show, :id => 'searchtest'
+      get :index, :q => 'searchtest'
     end
 
     should_respond_with :redirect
@@ -60,7 +60,7 @@ class SearchesControllerTest < ActionController::TestCase
       Factory(:flocker, :twitter_username => 'dontfindme')
       Factory(:flocker, :twitter_username => 'meneither')
       @target_flocker = Factory(:flocker, :twitter_username => 'ohhaithere')
-      get :show, :id => 'ohhaithere'
+      get :index, :q => 'ohhaithere'
     end
 
     should_respond_with :redirect
@@ -72,11 +72,11 @@ class SearchesControllerTest < ActionController::TestCase
       @ruby_flock = Factory(:flock, :name => 'ruby')
       @rubyonrails_flock = Factory(:flock, :name => 'rubyonrails')
       
-      get :show, :id => 'ruby'
+      get :index, :q => 'ruby'
     end
 
     should_respond_with :success
-    should_render_template :show
+    should_render_template :index
     
     should_link_to 'flock_path(@ruby_flock)'
     should_link_to 'flock_path(@rubyonrails_flock)'
@@ -86,13 +86,21 @@ class SearchesControllerTest < ActionController::TestCase
     setup do
       @techpickles_flocker = Factory(:flocker, :twitter_username => 'techpickles')
       @pickles_flocker = Factory(:flocker, :twitter_username => 'pickles')
-      get :show, :id => 'pickles'
+      get :index, :q => 'pickles'
     end
 
     should_respond_with :success
-    should_render_template :show
+    should_render_template :index
     
     should_link_to 'flocker_path(@techpickles_flocker)'
     should_link_to 'flocker_path(@pickles_flocker)'
+  end
+
+  context "searching for a term which includes a period" do
+    setup do
+      get :index, :q => 'ruby.com'
+    end
+    should_respond_with :success
+    should_render_template :index
   end
 end
