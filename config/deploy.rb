@@ -1,5 +1,5 @@
 set :application, 'flockup'
-set :domain, "deploy@twitterflocks.r08.railsrumble.com"
+set :domain, "deploy@flockup.com"
 set :deploy_to, "/home/deploy/apps/flockup"
 set :repository, "git@github.com:technicalpickles/flockup.git"
 set :revision, "origin/production"
