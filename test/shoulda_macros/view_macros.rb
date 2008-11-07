@@ -12,5 +12,18 @@ Test::Unit::TestCase.class_eval do
         end  
       end
     end
+
+      def should_have_form_for(action_expression, &block)
+      should "have form to #{action_expression}" do
+        instantiate_variables_from_assigns do
+          action =  eval(action_expression, self.send(:binding), __FILE__, __LINE__)
+
+          assert_select "form[action=#{action}]" do
+            block.bind(self).call if block
+          end
+        end
+      end
+    end
+    
   end
 end

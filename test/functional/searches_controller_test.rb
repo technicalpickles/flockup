@@ -8,11 +8,7 @@ class SearchesControllerTest < ActionController::TestCase
 
     should_respond_with :success
     should_render_template :index
-    should 'have a search form' do
-      assert_select "form[action=#{searches_path}]" do
-        assert_select "input[name='q']"
-      end
-    end
+    should_have_search_form
   end
   
   context "viewing form to perform search" do
@@ -21,6 +17,8 @@ class SearchesControllerTest < ActionController::TestCase
     end
 
     should_respond_with :success
+    should_render_template :new
+    should_have_search_form
   end
   
 

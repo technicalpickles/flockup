@@ -13,8 +13,4 @@
   %p
     Don't know what Twitter is, or just starting out? Check out <a href="http://www.youtube.com/watch?v=ddO9idmax0o">this great introductory video</a> by <a href="http://commoncraft.com">commoncraft.com</a>
 
-  - form_tag searches_path, :method => :post do
-    = text_field_tag 'search', nil, :id => 'find_a_flock_field'
-    %input{:id => 'find_a_flock', :type => 'image', :src => 'images/find_a_flock.png'}
-
-  
+  = render :partial => 'searches/form'
