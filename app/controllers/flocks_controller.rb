@@ -8,11 +8,16 @@ class FlocksController < ApplicationController
   def new
     self.resource = new_resource
   end
-  
+
   def show
     self.resource = find_resource
     redirect_to self.resource, :status => 301 if self.resource.has_better_id?
-    @flocker = self.resource.flockers.build
+    respond_to do |format|
+      format.html {
+        @flocker = self.resource.flockers.build
+      }
+      format.atom 
+    end
   end
 
   def create

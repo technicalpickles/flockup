@@ -23,7 +23,7 @@ class Flocker < ActiveRecord::Base
   named_scope :verified, :conditions => ['status = ?', VERIFIED]
   named_scope :invalid, :conditions => ['status = ?', INVALID]
   named_scope :not_invalid, :conditions => ['status != ?', INVALID]
-  
+
   attr_accessible :twitter_username
   
   has_friendly_id :twitter_username

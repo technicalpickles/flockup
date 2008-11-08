@@ -108,6 +108,17 @@ class FlocksControllerTest < ActionController::TestCase
       end
     end
   end
+
+  context "viewing a flock by  name as atom" do
+    setup do
+      assert_nothing_raised {
+        get :show, :id => @flock.name, :format => 'atom'
+      }
+    end
+
+    should_respond_with :success
+    should_render_template :show
+  end
   
   context "viewing a flock by id" do
     setup do
