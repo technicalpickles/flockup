@@ -107,6 +107,10 @@ class FlocksControllerTest < ActionController::TestCase
         assert_select "input[name='flocker[twitter_username]']"
       end
     end
+
+    should "have autodiscovery link for atom" do
+      assert_select "link[href=#{formatted_flock_path(@flock, :atom)}]"
+    end
   end
 
   context "viewing a flock by  name as atom" do

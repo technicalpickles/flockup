@@ -1,4 +1,5 @@
 - content_for(:title, "Viewing Flock #{@flock.name}")
+- content_for(:atom_feed_link, formatted_flock_path(@flock, :atom))
 
 %div{:class => 'span-22'}
   %h1= @flock.name
