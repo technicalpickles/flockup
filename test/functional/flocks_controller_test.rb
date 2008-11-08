@@ -8,7 +8,7 @@ class FlocksControllerTest < ActionController::TestCase
     @flocks = [@flock]
   end
   
-  context "viewing flock index" do
+  context "viewing html flock index" do
     setup do
       assert_nothing_raised { get :index }
     end
@@ -80,9 +80,11 @@ class FlocksControllerTest < ActionController::TestCase
   end
   
 
-  context "viewing a flock by name" do
+  context "viewing a flock by name as html" do
     setup do
-      assert_nothing_raised { get :show, :id => @flock.name }
+      assert_nothing_raised {
+        get :show, :id => @flock.name, :format => 'html'
+      }
     end
 
     should_respond_with :success
