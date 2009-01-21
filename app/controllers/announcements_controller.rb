@@ -1,4 +1,8 @@
 class AnnouncementsController < ApplicationController
+  USER_NAME, PASSWORD = "admin", "v4mp1r3"
+
+  before_filter :authenticate, :except => [ :index, :show ]
+  
   def index
     @announcements = Announcement.find(:all)
 
@@ -59,6 +63,14 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(announcements_url) }
+    end
+  end
+
+  private
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |user_name, password|
+      user_name == USER_NAME && password == PASSWORD
     end
   end
 end
