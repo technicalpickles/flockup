@@ -7,4 +7,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # :secret => '7684b2288928eae7b89dd9f88defaae9'
   
   filter_parameter_logging :password
+
+  helper_method :current_announcements
+
+  def current_announcements
+    @current_announcements ||= Announcement.current(session[:announcement_hide_time])
+  end
 end

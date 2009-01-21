@@ -12,12 +12,14 @@
       = auto_discovery_link_tag :atom, yield(:atom_feed_link)
   %body
     .container
-      #announcements.notice
-        - for announcement in Announcement.current
-          %strong= announcement.starts_at.to_s(:date)
-          = announcement.message_html
 
-        %p= link_to 'Hide announcements', '#', :id => 'hide_announcements'
+      - unless current_announcements.empty?
+        #announcements.notice
+          - for announcement in current_announcements
+            %strong= announcement.starts_at.to_s(:date)
+            = announcement.message_html
+
+          %p= link_to 'Hide announcements', '#', :id => 'hide_announcements'
       #logo{:class => 'column span-24 last'}
         %a{:href => root_path}
           = image_tag 'logo.png'
