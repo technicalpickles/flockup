@@ -1,0 +1,12 @@
+%dl
+  %dt Message
+  %dd= h @announcement.message
+  %dt Starts at
+  %dd= h @announcement.starts_at
+  %dt Ends at
+  %dd= h @announcement.ends_at
+
+%p
+  = link_to 'Edit', edit_announcement_path(@announcement)
+  |
+  = link_to 'Back', announcements_path

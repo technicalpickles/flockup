@@ -1,0 +1,9 @@
+= form.error_messages
+
+%dl
+  %dt= form.label :message
+  %dd= form.text_area :message
+  %dt= form.label :starts_at
+  %dd= form.datetime_select :starts_at
+  %dt= form.label :ends_at
+  %dd= form.datetime_select :ends_at

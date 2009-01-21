@@ -1,0 +1,7 @@
+%h1 Announcements
+
+
+- for announcement in @announcements
+  %div[announcement]
+    %h4= announcement.starts_at
+    = announcement.message

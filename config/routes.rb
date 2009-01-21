@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :announcements
+
   map.resources :flockers
   map.resources :flocks, :has_many => :flockers
 
