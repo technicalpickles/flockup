@@ -13,11 +13,9 @@
   %body
     .container
       #c-d.notice
-        %strong 1-12-2009:
-        Dearest FlockUp users,
-        <a href="http://flock.com">Flock</a> has served us a cease & desist letter regarding their 'Flock' trademark.  In order to avoid customer confusion, we will be rebranding and changing domains in the very near future. At the latest, this will occur by February 13th, 2009. The curious can find the letter here:
-        = link_to 'part 1', image_path('flockup-cd-1.png')
-        = link_to 'part 2', image_path('flockup-cd-2.png')
+        - for announcement in Announcement.current
+          %strong= announcement.starts_at.to_s(:date)
+          = announcement.message_html
       #logo{:class => 'column span-24 last'}
         %a{:href => root_path}
           = image_tag 'logo.png'
