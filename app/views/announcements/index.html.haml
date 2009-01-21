@@ -3,5 +3,5 @@
 
 - for announcement in @announcements
   %div[announcement]
-    %h4= announcement.starts_at
-    = announcement.message
+    %h4= announcement.starts_at.to_s(:date)
+    = announcement.message_html
