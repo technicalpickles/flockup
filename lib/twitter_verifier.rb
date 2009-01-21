@@ -18,6 +18,6 @@ protected
   end
   
   def twitter
-    @twitter ||= Twitter::Base.new('flockup', 'v4mp1r3')
+    @twitter ||= Twitter::Base.new('tweetfleet', 'v4mp1r3')
   end
 end

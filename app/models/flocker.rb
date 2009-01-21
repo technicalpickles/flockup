@@ -50,7 +50,6 @@ class Flocker < ActiveRecord::Base
     if valid_username?()
       self.status = VERIFIED
       self.save!
-      push('notify_about_flockup')
     else
       self.status = INVALID
       self.save!
@@ -67,6 +66,5 @@ protected
   
   def queue_for_verification
     push('verify_twitter_username')
-    # FlockerWorker.async_verify(:id => self.id)
   end
 end
