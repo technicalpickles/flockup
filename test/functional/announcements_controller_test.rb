@@ -53,6 +53,22 @@ class AnnouncementsControllerTest < ActionController::TestCase
       end
       should_respond_with :unauthorized
     end
+
+    context "GET to hide" do
+      setup do
+        @now = Time.now
+        Time.stubs(:now).returns(@now)
+
+        @request.env['HTTP_ACCEPT'] = 'application/json'
+        
+        get :hide
+      end
+
+      should_respond_with :success
+      should "set hide date on session" do
+        assert_equal @now, session[:announcement_hide_time]
+      end
+    end
   end
 
   context "when authenticated" do

@@ -1,7 +1,7 @@
 class AnnouncementsController < ApplicationController
   USER_NAME, PASSWORD = "admin", "v4mp1r3"
 
-  before_filter :authenticate, :except => [ :index, :show ]
+  before_filter :authenticate, :except => [ :index, :show, :hide ]
   
   def index
     @announcements = Announcement.find(:all)
@@ -63,6 +63,14 @@ class AnnouncementsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(announcements_url) }
+    end
+  end
+
+  def hide
+    session[:announcement_hide_time] = Time.now
+
+    respond_to do |format|
+      format.json { render :json => {:success => true} }
     end
   end
 

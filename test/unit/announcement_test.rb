@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class AnnouncementTest < ActiveSupport::TestCase
   should_require_attributes :message, :starts_at, :ends_at
 
+  should_have_markup :message
+
   context "some announcements" do
     setup do
       @old_announcement = Factory(:announcement, :starts_at => 2.months.ago, :ends_at => 1.month.ago)
