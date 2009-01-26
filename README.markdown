@@ -8,7 +8,19 @@ Make sure to have simplified_starling running:
 
 ## Production
 
-###Deployment:
+### SSH
+
+    # Append this to ~/.ssh/config
+    Host flockup
+    Hostname 72.14.181.9
+    User root
+
+ Now you can just:
+ 
+    ssh flockup
+
+
+### Deployment:
 
     rake vlad:update vlad:migrations vlad:start_app
 

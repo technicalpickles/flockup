@@ -5,6 +5,4 @@ config.action_controller.perform_caching             = true
 
 config.action_view.cache_template_loading            = true
 
-# Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new
-
-APP_URL="http://flockup.com"
+APP_URL = "http://flockup.com"

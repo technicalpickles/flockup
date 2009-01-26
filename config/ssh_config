@@ -1,6 +1,0 @@
-# Append this to ~/.ssh/config
-Host flockup
-Hostname 72.14.181.9
-User root
-
-# Now you can ssh flockup
