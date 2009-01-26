@@ -18,6 +18,8 @@ class FlockersController < ApplicationController
   def create
     self.resource = new_resource
     
+    # FIXME the controller shouldn't be doing this much work, fatten up those models
+    # Alternatively, could care a lot less about the message being displayed
     if !new_resource.new_record?
       if enclosing_resource
         if enclosing_resource.flocker_ids.include?(resource.id)

@@ -34,6 +34,8 @@ class Flocker < ActiveRecord::Base
   @@per_page = @@per_row*7
 
   
+  # TODO I feel like some of this status stuff could be better implemented.
+  # aasm? simple_state_machine?
   def unverified_twitter_username?
     self[:status].blank? || self[:status] == UNVERIFIED
   end
