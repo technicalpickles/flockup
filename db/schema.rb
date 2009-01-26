@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090121203354) do
+ActiveRecord::Schema.define(:version => 20090126213440) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -42,13 +42,6 @@ ActiveRecord::Schema.define(:version => 20090121203354) do
   end
 
   add_index "flocks", ["name"], :name => "index_flocks_on_name"
-
-  create_table "notifications", :force => true do |t|
-    t.integer  "flocker_id"
-    t.text     "text"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "slugs", :force => true do |t|
     t.string   "name"
