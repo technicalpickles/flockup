@@ -11,7 +11,7 @@ config.action_mailer.delivery_method = :test
 config.gem 'thoughtbot-factory_girl', :lib => 'factory_girl', :source => 'http://gems.github.com' 
 # config.gem 'quietbacktrace'
 config.gem 'redgreen'
-config.gem 'ruby-debug'
-config.gem 'ZenTest', :lib => 'test/rails'
+#config.gem 'ruby-debug'
+#config.gem 'ZenTest', :lib => 'test/rails'
 
 APP_URL = "http://localhost:3000"

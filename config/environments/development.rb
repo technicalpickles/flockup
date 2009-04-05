@@ -8,6 +8,6 @@ config.action_controller.perform_caching             = false
 
 config.action_mailer.raise_delivery_errors = false
 
-config.gem 'ruby-debug'
+#config.gem 'ruby-debug'
 
 APP_URL = "http://localhost:3000"
