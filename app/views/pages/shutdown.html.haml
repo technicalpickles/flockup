@@ -1,0 +1,16 @@
+%h1
+  TweetFleet shutting down
+
+%p
+  After much consideration and inactivity, we've decided to shutdown. 
+%p
+  We are making our data and source publically available:
+
+%ul
+  %li= link_to 'Database dump', '/data/flockup-20090404.sql'
+  %li= link_to 'Users as XML', '/data/flockers.xml'
+  %li= link_to 'Groups as XML', '/data/flocks.xml'
+  %li= link_to 'Source', 'http://github.com/technicalpickles/flockup'
+
+%p
+  == The original author, #{link_to 'Josh Nichols', "http://technicalpickles.com/"}, can be contacted at #{mail_to 'josh@technicalpickles.com'}
